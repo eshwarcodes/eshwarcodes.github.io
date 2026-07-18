@@ -1,0 +1,1200 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sustainable Ag Systems Lab · Eshwar Ravishankar · Cal Poly Pomona</title>
+<meta name="description" content="The Sustainable Ag Systems Lab at Cal Poly Pomona, led by Dr. Eshwar Ravishankar, grows food and energy from the same sunlight: agrivoltaics, solar-powered greenhouses, controlled-environment agriculture, and precision remote sensing." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --canopy:#08170F;      /* near-black deep green base */
+  --canopy-rgb:8,23,15;
+  --canopy-2:#0D2117;    /* raised surface */
+  --canopy-3:#12301F;    /* card */
+  --leaf:#35C56A;        /* living green */
+  --leaf-rgb:53,197,106;
+  --leaf-soft:#7FE0A0;
+  --solar:#FFC12B;       /* solar gold */
+  --solar-rgb:255,193,43;
+  --ember:#FF6B35;       /* energetic accent */
+  --ember-rgb:255,107,53;
+  --violet:#8B6BF0;      /* short-wavelength edge, used sparingly */
+  --violet-rgb:139,107,240;
+  --mist:#EAF1E6;        /* primary text on dark */
+  --stone:#9DB0A0;       /* secondary text */
+  --stone-dim:#63786B;
+  --line:rgba(127,224,160,.14);
+  --line-strong:rgba(127,224,160,.28);
+  --maxw:1160px;
+  --ff-display:"Bricolage Grotesque",system-ui,sans-serif;
+  --ff-body:"Hanken Grotesk",system-ui,sans-serif;
+  --ff-mono:"JetBrains Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+[id]{scroll-margin-top:88px}
+body{
+  margin:0;background:var(--canopy);color:var(--mist);
+  font-family:var(--ff-body);font-size:17px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+h1,h2,h3{font-family:var(--ff-display);font-weight:700;line-height:1.02;letter-spacing:-.02em;margin:0}
+p{margin:0 0 1rem}
+::selection{background:var(--solar);color:var(--canopy)}
+
+/* ============ LAYOUT ============ */
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+section{position:relative}
+.eyebrow{
+  font-family:var(--ff-mono);font-size:12.5px;font-weight:500;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--leaf);display:inline-flex;align-items:center;gap:.6em;
+}
+.eyebrow::before{content:"";width:26px;height:1px;background:var(--leaf);opacity:.6}
+
+/* ============ NAV ============ */
+header.nav{
+  position:sticky;top:0;z-index:50;
+  backdrop-filter:blur(14px);background:rgba(8,23,15,.72);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:66px}
+.brand{display:flex;align-items:center;gap:.7rem;font-family:var(--ff-display);font-weight:700;font-size:16px;letter-spacing:-.01em}
+.brand .mark{width:26px;height:26px;flex:0 0 auto}
+.nav-links{display:flex;gap:30px;align-items:center}
+.nav-links a{font-size:14.5px;color:var(--stone);font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--mist)}
+.nav-cta{
+  font-family:var(--ff-mono);font-size:12.5px;letter-spacing:.04em;
+  padding:9px 16px;border:1px solid var(--line-strong);border-radius:999px;color:var(--mist)!important;
+  transition:background .2s,border-color .2s;
+}
+.nav-cta:hover{background:var(--leaf);color:var(--canopy)!important;border-color:var(--leaf)}
+.nav-toggle{display:none;background:none;border:0;color:var(--mist);cursor:pointer}
+@media(max-width:1000px){
+  .nav-links{display:none}
+  .nav-toggle{display:block}
+  .nav-links.open{display:flex;position:absolute;top:66px;left:0;right:0;flex-direction:column;
+    background:var(--canopy-2);padding:18px 24px;gap:18px;border-bottom:1px solid var(--line)}
+}
+
+/* ============ HERO ============ */
+.hero{padding:clamp(48px,9vw,104px) 0 clamp(56px,8vw,92px);overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:56px;align-items:center}
+.hero h1{
+  font-size:clamp(40px,6.2vw,78px);font-weight:800;margin:22px 0 20px;
+}
+.hero h1 .g{color:var(--leaf)}
+.hero h1 .y{color:var(--solar)}
+.hero-sub{font-size:clamp(17px,2vw,20px);color:var(--stone);max-width:46ch;margin-bottom:32px}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:40px}
+.btn{
+  font-family:var(--ff-mono);font-size:13px;letter-spacing:.03em;font-weight:500;
+  padding:14px 22px;border-radius:999px;display:inline-flex;align-items:center;gap:.6em;
+  transition:transform .18s ease,box-shadow .18s ease,background .2s;cursor:pointer;border:1px solid transparent;
+}
+.btn-primary{background:var(--solar);color:var(--canopy)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 30px -8px rgba(255,193,43,.5)}
+.btn-ghost{border-color:var(--line-strong);color:var(--mist)}
+.btn-ghost:hover{border-color:var(--leaf);color:var(--leaf);transform:translateY(-2px)}
+.hero-stats{display:flex;gap:34px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:26px}
+.stat .num{font-family:var(--ff-display);font-weight:700;font-size:30px;line-height:1}
+.stat .num.g{color:var(--leaf)}.stat .num.y{color:var(--solar)}
+.stat .lab{font-family:var(--ff-mono);font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--stone-dim);margin-top:8px}
+
+/* ---- signature: spectral beam-split diagram ---- */
+.split-viz{position:relative;aspect-ratio:1/1;width:100%;max-width:460px;margin:0 auto}
+.split-viz svg{width:100%;height:100%;overflow:visible}
+.beam{stroke-linecap:round;fill:none}
+.draw{stroke-dasharray:1;stroke-dashoffset:1;animation:draw 1.4s ease forwards}
+.draw.d1{animation-delay:.2s}.draw.d2{animation-delay:.9s}.draw.d3{animation-delay:.9s}
+@keyframes draw{to{stroke-dashoffset:0}}
+.viz-label{font-family:var(--ff-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;fill:var(--stone)}
+.viz-node{opacity:0;animation:pop .5s ease forwards 1.7s}
+@keyframes pop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
+.pulse-sun{transform-origin:center;animation:sunpulse 4s ease-in-out infinite}
+@keyframes sunpulse{0%,100%{opacity:.85}50%{opacity:1}}
+@media(max-width:860px){
+  .hero-grid{grid-template-columns:1fr;gap:36px}
+  .split-viz{max-width:340px;order:-1}
+}
+
+/* ============ SECTION SHELL ============ */
+.band{padding:clamp(64px,9vw,116px) 0;border-top:1px solid var(--line)}
+.band-head{max-width:640px;margin-bottom:52px}
+.band-head h2{font-size:clamp(30px,4.4vw,50px);margin:18px 0 0}
+.band-head p{color:var(--stone);font-size:19px;margin-top:18px}
+
+/* spectrum divider (echo of signature) */
+.spectrum-rule{height:3px;border:0;margin:0;
+  background:linear-gradient(90deg,var(--violet),#4f7bf0 22%,var(--leaf) 48%,var(--solar) 74%,var(--ember));
+  opacity:.85}
+
+/* ============ ABOUT ============ */
+.about-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;align-items:start}
+.portrait{
+  position:relative;border-radius:18px;overflow:hidden;aspect-ratio:4/5;
+  background:linear-gradient(160deg,var(--canopy-3),var(--canopy-2));border:1px solid var(--line-strong);
+}
+.portrait img{width:100%;height:100%;object-fit:cover}
+.portrait .ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:var(--stone-dim);text-align:center;padding:24px}
+.portrait .ph .ph-ic{font-size:34px}
+.portrait .ph code{font-family:var(--ff-mono);font-size:11px;color:var(--stone)}
+.about-body h2{font-size:clamp(28px,3.6vw,42px)}
+.lead{font-size:20px;color:var(--mist)}
+.about-body p{color:var(--stone)}
+.about-body strong{color:var(--mist);font-weight:600}
+.cred-list{list-style:none;padding:0;margin:26px 0 0;display:grid;gap:2px}
+.cred-list li{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:baseline;padding:14px 0;border-top:1px solid var(--line)}
+.cred-list .yr{font-family:var(--ff-mono);font-size:12.5px;color:var(--solar);letter-spacing:.03em}
+.cred-list .d strong{display:block;color:var(--mist);font-weight:600}
+.cred-list .d span{color:var(--stone);font-size:15px}
+@media(max-width:820px){.about-grid{grid-template-columns:1fr;gap:34px}.portrait{max-width:340px}}
+
+/* ============ RESEARCH ============ */
+.rgrid{display:grid;grid-template-columns:repeat(6,1fr);gap:20px}
+.rcard{
+  grid-column:span 2;background:var(--canopy-2);border:1px solid var(--line);border-radius:16px;
+  padding:28px 26px 30px;position:relative;overflow:hidden;transition:border-color .25s,transform .25s;
+}
+.rcard:hover{border-color:var(--line-strong);transform:translateY(-4px)}
+.rcard::after{content:"";position:absolute;left:0;top:0;height:3px;width:100%;
+  background:linear-gradient(90deg,var(--leaf),var(--solar));transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.rcard:hover::after{transform:scaleX(1)}
+.rcard.wide{grid-column:span 3}
+.rcard .rn{font-family:var(--ff-mono);font-size:12px;color:var(--stone-dim);letter-spacing:.1em}
+.rcard .ric{width:42px;height:42px;margin:6px 0 16px;color:var(--leaf)}
+.rcard h3{font-size:22px;margin-bottom:10px}
+.rcard p{color:var(--stone);font-size:15.5px;margin:0}
+.rcard .tags{margin-top:16px;display:flex;flex-wrap:wrap;gap:8px}
+.tag{font-family:var(--ff-mono);font-size:11px;letter-spacing:.04em;color:var(--leaf-soft);
+  border:1px solid var(--line);border-radius:999px;padding:5px 11px}
+@media(max-width:900px){.rgrid{grid-template-columns:1fr 1fr}.rcard,.rcard.wide{grid-column:span 1}}
+@media(max-width:560px){.rgrid{grid-template-columns:1fr}}
+
+/* ============ PUBLICATIONS ============ */
+.pub{display:grid;grid-template-columns:auto 1fr auto;gap:24px;align-items:baseline;
+  padding:26px 0;border-top:1px solid var(--line);transition:background .2s}
+.pub:hover{background:linear-gradient(90deg,rgba(53,197,106,.05),transparent)}
+.pub .py{font-family:var(--ff-mono);font-size:14px;color:var(--stone-dim)}
+.pub .pt{font-size:18px;color:var(--mist);font-weight:500;line-height:1.35;margin:0 0 8px}
+.pub .pa{color:var(--stone);font-size:14.5px;margin:0}
+.pub .pa em{color:var(--stone)}
+.venue{font-family:var(--ff-mono);font-size:11px;letter-spacing:.06em;padding:6px 12px;border-radius:999px;
+  white-space:nowrap;font-weight:500;align-self:center}
+.venue.flag{background:var(--solar);color:var(--canopy)}
+.venue.mid{background:rgba(53,197,106,.16);color:var(--leaf-soft);border:1px solid var(--line-strong)}
+.venue.std{border:1px solid var(--line);color:var(--stone)}
+@media(max-width:720px){.pub{grid-template-columns:auto 1fr;gap:8px 18px}.venue{grid-column:2;justify-self:start;margin-top:6px}}
+
+/* ============ FUNDING ============ */
+.fund-top{display:flex;gap:22px;flex-wrap:wrap;margin-bottom:40px}
+.fchip{background:var(--canopy-2);border:1px solid var(--line);border-radius:14px;padding:22px 26px;flex:1;min-width:180px}
+.fchip .fn{font-family:var(--ff-display);font-weight:700;font-size:34px;color:var(--solar)}
+.fchip .fl{font-family:var(--ff-mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--stone);margin-top:6px}
+.grants{display:grid;gap:0}
+.grant{display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center;padding:18px 0;border-top:1px solid var(--line)}
+.grant .gt{color:var(--mist);font-weight:500}
+.grant .gm{font-family:var(--ff-mono);font-size:12.5px;color:var(--stone);margin-top:4px;letter-spacing:.02em}
+.grant .gr{font-family:var(--ff-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+  padding:5px 11px;border-radius:999px;border:1px solid var(--line-strong);color:var(--leaf-soft);white-space:nowrap}
+.grant .gr.rev{color:var(--solar);border-color:rgba(255,193,43,.4)}
+
+/* ============ TEACHING ============ */
+.tgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(258px,1fr));gap:20px}
+.tcard{background:var(--canopy-2);border:1px solid var(--line);border-radius:16px;padding:28px;position:relative}
+.tcard .tc{font-family:var(--ff-mono);font-size:12.5px;color:var(--solar);letter-spacing:.06em;padding-right:88px;display:block}
+.tcard h3{font-size:20px;margin:10px 0 10px}
+.tcard p{color:var(--stone);font-size:15px;margin:0}
+.tcard .tlvl{position:absolute;top:26px;right:24px;font-family:var(--ff-mono);font-size:10px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--stone-dim);border:1px solid var(--line);border-radius:999px;padding:4px 10px}
+.tcard.soon{border-color:var(--line-strong)}
+.tcard.soon .tlvl{color:var(--solar);border-color:rgba(255,193,43,.4)}
+.teach-note{color:var(--stone);font-size:16px;max-width:74ch;margin:30px 0 0;line-height:1.65}
+.teach-note strong{color:var(--mist);font-weight:600}
+.teach-extra{margin-top:34px}
+@media(max-width:680px){.tgrid{grid-template-columns:1fr}.tcard .tc{padding-right:80px}}
+
+/* ============ JOIN ============ */
+.join{background:
+  radial-gradient(120% 140% at 100% 0%,rgba(255,193,43,.14),transparent 55%),
+  radial-gradient(120% 140% at 0% 100%,rgba(53,197,106,.16),transparent 55%),
+  var(--canopy-2);
+  border:1px solid var(--line-strong);border-radius:24px;padding:clamp(38px,6vw,72px);text-align:center}
+.join h2{font-size:clamp(30px,4.6vw,52px);max-width:16ch;margin:16px auto 18px}
+.join p{color:var(--stone);max-width:56ch;margin:0 auto 30px;font-size:19px}
+.join .who{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:34px}
+.who span{font-family:var(--ff-mono);font-size:12.5px;color:var(--leaf-soft);border:1px solid var(--line);
+  border-radius:999px;padding:8px 15px}
+
+/* ============ FOOTER ============ */
+footer{border-top:1px solid var(--line);padding:64px 0 48px;margin-top:8px}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px}
+.foot-brand{display:flex;align-items:center;gap:.7rem;font-family:var(--ff-display);font-weight:700;font-size:18px;margin-bottom:16px}
+.foot-brand .mark{width:28px;height:28px}
+.foot p{color:var(--stone);font-size:15px;max-width:34ch}
+.foot h4{font-family:var(--ff-mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--stone-dim);margin:0 0 16px;font-weight:500}
+.foot ul{list-style:none;padding:0;margin:0;display:grid;gap:11px}
+.foot ul a{color:var(--stone);font-size:15px;transition:color .2s}
+.foot ul a:hover{color:var(--leaf)}
+.foot-bot{margin-top:52px;padding-top:26px;border-top:1px solid var(--line);
+  display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  font-family:var(--ff-mono);font-size:12px;color:var(--stone-dim);letter-spacing:.02em}
+@media(max-width:720px){.foot-grid{grid-template-columns:1fr 1fr}.foot-brand{grid-column:1/-1}}
+
+/* ============ FEATURE BANDS (image + text) ============ */
+.feature{padding:clamp(64px,9vw,116px) 0;border-top:1px solid var(--line)}
+.feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(34px,5vw,60px);align-items:center}
+.feature-text h2{font-size:clamp(28px,4vw,46px);margin:16px 0 18px}
+.feature-text .lead{font-size:20px;color:var(--mist);margin-bottom:14px}
+.feature-text p{color:var(--stone);font-size:17px}
+.feature-text strong{color:var(--mist);font-weight:600}
+.feature-media{display:grid;gap:16px}
+.feature-media img{border-radius:16px;border:1px solid var(--line-strong);width:100%;object-fit:cover;display:block}
+.feature-media .big{aspect-ratio:16/10}
+.feature-media .two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.feature-media .two img{aspect-ratio:4/3}
+.feature-media .figure-card{background:#fff;padding:14px 16px;border-radius:16px;border:1px solid var(--line-strong)}
+.feature-media .figure-card img{border:0;border-radius:4px}
+.media-left .feature-media{order:-1}
+.imgcap{font-family:var(--ff-mono);font-size:11px;letter-spacing:.06em;color:var(--stone-dim);margin-top:-4px}
+.specs{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:28px}
+.spec{border:1px solid var(--line);border-radius:12px;padding:14px 15px;background:var(--canopy-2)}
+.spec .sl{font-family:var(--ff-mono);font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--stone-dim)}
+.spec .sv{color:var(--mist);font-size:14px;margin-top:7px;font-weight:500;line-height:1.35}
+.pill-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+@media(max-width:820px){
+  .feature-grid{grid-template-columns:1fr;gap:30px}
+  .media-left .feature-media{order:-1}
+  .feature .feature-media{order:-1}
+  .specs{grid-template-columns:1fr 1fr}
+}
+
+/* ============ TEACHING gallery + tools ============ */
+.tgallery{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:16px;margin-bottom:34px}
+.tgallery figure{margin:0}
+.tgallery img{border-radius:14px;border:1px solid var(--line);width:100%;object-fit:cover;aspect-ratio:4/3;display:block}
+.tgallery .lead-img img{aspect-ratio:auto;height:100%;min-height:220px}
+.tgallery .lead-img{grid-row:span 2}
+@media(max-width:760px){.tgallery{grid-template-columns:1fr 1fr}.tgallery .lead-img{grid-column:1/-1;grid-row:auto}.tgallery .lead-img img{min-height:0;aspect-ratio:16/9}}
+.tools{display:flex;gap:20px;flex-wrap:wrap;align-items:center;justify-content:space-between;
+  background:linear-gradient(120deg,rgba(53,197,106,.10),rgba(255,193,43,.08)),var(--canopy-2);
+  border:1px solid var(--line-strong);border-radius:16px;padding:24px 28px;margin-top:8px}
+.tools .tt h3{font-size:20px;margin-bottom:6px}
+.tools .tt p{color:var(--stone);font-size:15px;margin:0;max-width:52ch}
+
+/* ============ IMPACT ============ */
+.impact-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.icard{background:var(--canopy-2);border:1px solid var(--line);border-radius:16px;padding:26px 24px}
+.icard .iic{width:34px;height:34px;color:var(--solar);margin-bottom:16px}
+.icard h3{font-size:18px;margin-bottom:9px;line-height:1.15}
+.icard p{color:var(--stone);font-size:14.5px;margin:0}
+@media(max-width:900px){.impact-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.impact-grid{grid-template-columns:1fr}}
+
+/* ============ FUNDERS / PARTNERS thank-you ============ */
+.thanks{margin-top:48px;padding-top:34px;border-top:1px solid var(--line)}
+.thanks + .thanks{margin-top:30px;padding-top:0;border-top:0}
+.thanks-h{font-family:var(--ff-mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--stone-dim);font-weight:500;margin:0 0 18px}
+.chip-row{display:flex;flex-wrap:wrap;gap:10px}
+.pchip{font-family:var(--ff-mono);font-size:12.5px;color:var(--leaf-soft);border:1px solid var(--line-strong);border-radius:999px;padding:8px 15px;background:var(--canopy-2)}
+
+/* ============ NEWS ============ */
+.news{display:grid;gap:0;max-width:840px}
+.nitem{display:grid;grid-template-columns:66px 1fr;gap:24px;align-items:baseline;padding:20px 0;border-top:1px solid var(--line)}
+.nitem .nd{font-family:var(--ff-mono);font-size:13px;color:var(--stone-dim);white-space:nowrap}
+.nitem .nb{color:var(--mist);font-size:16.5px;line-height:1.5}
+.nitem .nb strong{font-weight:600}
+.ntag{font-family:var(--ff-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:4px 9px;border-radius:999px;margin-right:12px;vertical-align:2px;white-space:nowrap}
+.ntag.paper{background:rgba(53,197,106,.16);color:var(--leaf-soft);border:1px solid var(--line-strong)}
+.ntag.grant{background:var(--solar);color:var(--canopy)}
+.ntag.milestone{border:1px solid var(--line-strong);color:var(--stone)}
+.ntag.press{background:rgba(255,107,53,.16);color:var(--ember);border:1px solid var(--line-strong)}
+@media(max-width:560px){.nitem{grid-template-columns:1fr;gap:6px}}
+
+/* ============ TEAM ============ */
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.member .avatar{position:relative;border-radius:16px;overflow:hidden;aspect-ratio:1/1;
+  background:linear-gradient(160deg,var(--canopy-3),var(--canopy-2));border:1px solid var(--line-strong)}
+.member .avatar img{width:100%;height:100%;object-fit:cover}
+.member .avatar .ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--stone-dim);text-align:center;padding:14px}
+.member .avatar .ph .ph-ic{font-size:30px}
+.member .avatar .ph code{font-family:var(--ff-mono);font-size:10px;color:var(--stone)}
+.member h3{font-size:17px;margin:16px 0 4px}
+.member .role{font-family:var(--ff-mono);font-size:11px;letter-spacing:.05em;color:var(--solar);text-transform:uppercase}
+.member p{color:var(--stone);font-size:14px;margin:9px 0 0;line-height:1.5}
+.member.open{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+  border:1px dashed var(--line-strong);border-radius:16px;padding:28px 22px;gap:12px}
+.member.open .role{color:var(--leaf)}
+.member.open p{margin:0}
+.member.open a{font-family:var(--ff-mono);font-size:12.5px;color:var(--solar);border-bottom:1px solid var(--line-strong);padding-bottom:2px}
+@media(max-width:900px){.team-grid{grid-template-columns:1fr 1fr}}
+
+/* ============ SPEAKING ENGAGEMENTS ============ */
+.conf-badge{display:flex;flex-wrap:wrap;align-items:center;gap:10px 20px;
+  background:radial-gradient(120% 160% at 0% 0%,rgba(255,193,43,.12),transparent 60%),var(--canopy-2);
+  border:1px solid var(--line-strong);border-radius:16px;padding:20px 24px;margin-bottom:14px}
+.conf-badge .cb-name{font-family:var(--ff-display);font-weight:700;font-size:19px;color:var(--mist)}
+.conf-badge .cb-meta{font-family:var(--ff-mono);font-size:12.5px;color:var(--solar);letter-spacing:.04em}
+.conf-badge .cb-count{margin-left:auto;font-family:var(--ff-mono);font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--canopy);background:var(--solar);border-radius:999px;padding:7px 14px;font-weight:500}
+.talk{display:grid;grid-template-columns:180px 1fr;gap:28px;align-items:baseline;
+  padding:22px 0;border-top:1px solid var(--line);transition:background .2s}
+.talk:first-of-type{border-top:0}
+.talk:hover{background:linear-gradient(90deg,rgba(255,193,43,.05),transparent)}
+.talk-topic{font-family:var(--ff-mono);font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--leaf-soft)}
+.talk-t{font-size:17.5px;color:var(--mist);font-weight:500;line-height:1.4;margin:0 0 6px}
+.talk-a{font-family:var(--ff-mono);font-size:13px;color:var(--stone);margin:0}
+.talk-a .lead-au{color:var(--mist)}
+.talk-a .pres{color:var(--solar);font-weight:500}
+.talk-when{display:block;margin-top:7px;font-family:var(--ff-mono);font-size:11px;color:var(--solar);letter-spacing:.02em;line-height:1.5}
+.talk-when .sess{display:block;color:var(--stone);font-size:10.5px;margin-top:2px}
+@media(max-width:640px){.talk{grid-template-columns:1fr;gap:6px}.conf-badge .cb-count{margin-left:0}.talk-when{margin-top:2px}}
+
+/* ============ SIGNATURE MOTION LAYER ============ */
+
+/* scroll progress bar */
+.scroll-progress{position:fixed;top:0;left:0;height:2px;width:100%;transform:scaleX(0);transform-origin:0 50%;
+  background:linear-gradient(90deg,var(--leaf),var(--solar) 55%,var(--ember));z-index:200;will-change:transform;pointer-events:none}
+
+/* additive cursor glow (hover devices only, added via JS) */
+.cursor-glow{position:fixed;top:0;left:0;width:520px;height:520px;border-radius:50%;pointer-events:none;z-index:1;
+  transform:translate3d(-50%,-50%,0);opacity:0;transition:opacity .6s ease;will-change:transform;
+  background:radial-gradient(circle,rgba(var(--solar-rgb),.10),rgba(var(--leaf-rgb),.05) 42%,transparent 70%);
+  mix-blend-mode:screen}
+
+/* hero ambient aurora (soft drifting gradients, no blur filter) */
+.hero{position:relative}
+.aurora{position:absolute;inset:-25% -10% 0 -10%;z-index:0;pointer-events:none;overflow:hidden}
+.aurora b{position:absolute;display:block;border-radius:50%;mix-blend-mode:screen;will-change:transform}
+.aurora .a1{width:62vw;height:62vw;left:-12%;top:-24%;
+  background:radial-gradient(circle,rgba(var(--leaf-rgb),.22),transparent 62%);animation:drift1 26s ease-in-out infinite}
+.aurora .a2{width:54vw;height:54vw;right:-10%;top:-14%;
+  background:radial-gradient(circle,rgba(var(--solar-rgb),.20),transparent 62%);animation:drift2 32s ease-in-out infinite}
+.aurora .a3{width:44vw;height:44vw;left:34%;top:18%;
+  background:radial-gradient(circle,rgba(var(--violet-rgb),.15),transparent 60%);animation:drift3 38s ease-in-out infinite}
+@keyframes drift1{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(6%,5%,0) scale(1.08)}}
+@keyframes drift2{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(-6%,7%,0) scale(1.12)}}
+@keyframes drift3{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(5%,-6%,0) scale(1.1)}}
+.hero .wrap{position:relative;z-index:2}
+
+/* hero H1: word-by-word stagger rise */
+.hero-h1 .w{display:inline-block;opacity:0;transform:translateY(1.05em) rotate(2deg);
+  animation:wordUp .82s cubic-bezier(.16,1,.3,1) both}
+@keyframes wordUp{to{opacity:1;transform:none}}
+.hero-h1 .grad{background:linear-gradient(100deg,var(--solar),var(--leaf) 58%,var(--leaf-soft));
+  background-size:220% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  animation:wordUp .82s cubic-bezier(.16,1,.3,1) both,gradFlow 7s linear infinite 1.1s}
+@keyframes gradFlow{to{background-position:220% center}}
+
+/* Section H2: gradient underline wipe on scroll */
+.band-head h2,.feature-text h2{position:relative;display:inline-block}
+.band-head h2::after,.feature-text h2::after{content:"";position:absolute;left:0;bottom:-12px;height:3px;width:0;
+  border-radius:2px;background:linear-gradient(90deg,var(--leaf),var(--solar));
+  transition:width .9s cubic-bezier(.16,1,.3,1) .25s}
+.reveal.in h2::after{width:66px}
+
+/* mouse-tracked spotlight cards (SpotlightCard) */
+.rcard,.icard,.tcard,.member{--mx:50%;--my:50%}
+.rcard>*,.icard>*,.tcard>*,.member>*{position:relative;z-index:1}
+.rcard::before,.icard::before,.tcard::before,.member::before{content:"";position:absolute;inset:0;border-radius:inherit;
+  background:radial-gradient(340px circle at var(--mx) var(--my),rgba(var(--solar-rgb),.12),transparent 46%);
+  opacity:0;transition:opacity .35s ease;pointer-events:none;z-index:0}
+.rcard:hover::before,.icard:hover::before,.tcard:hover::before,.member:hover::before{opacity:1}
+
+/* GlareHover: diagonal sheen on media & avatars */
+.member .avatar,.portrait,.tgallery figure,.feature-media img{position:relative;overflow:hidden}
+.member .avatar::after,.tgallery figure::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:linear-gradient(115deg,transparent 32%,rgba(255,255,255,.16) 46%,transparent 60%);
+  transform:translateX(-130%);transition:transform .8s cubic-bezier(.16,1,.3,1)}
+.member:hover .avatar::after,.tgallery figure:hover::after{transform:translateX(130%)}
+
+/* nav scrolled state */
+header.nav{transition:background .3s ease,border-color .3s ease,box-shadow .3s ease}
+header.nav.scrolled{background:rgba(8,23,15,.9);box-shadow:0 8px 30px -14px rgba(0,0,0,.6);border-bottom-color:var(--line-strong)}
+
+/* reveal on scroll */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+  .hero-h1 .w{opacity:1;transform:none}
+  .hero-h1 .grad{-webkit-text-fill-color:var(--solar);color:var(--solar)}
+  .band-head h2::after,.feature-text h2::after{width:66px}
+  .aurora,.cursor-glow{display:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<div class="scroll-progress" id="progress"></div>
+
+<!-- reusable leaf/sun mark -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="mark" viewBox="0 0 32 32">
+    <circle cx="16" cy="16" r="7" fill="var(--solar)"/>
+    <path d="M16 25c-6 0-10-4-10-9 6 0 10 4 10 9zM16 25c6 0 10-4 10-9-6 0-10 4-10 9z" fill="var(--leaf)"/>
+  </symbol>
+</svg>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top"><svg class="mark"><use href="#mark"/></svg> Sustainable Ag Systems Lab</a>
+    <nav class="nav-links" id="navlinks">
+      <a href="#about">About</a>
+      <a href="#research">Research</a>
+      <a href="#publications">Publications</a>
+      <a href="#talks">Talks</a>
+      <a href="#funding">Funding</a>
+      <a href="#teaching">Teaching</a>
+      <a href="#team">Team</a>
+      <a href="#news">News</a>
+      <a href="#contact">Contact</a>
+      <a class="nav-cta" href="#join">Join the lab</a>
+    </nav>
+    <button class="nav-toggle" id="navtoggle" aria-label="Menu">
+      <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+</header>
+
+<a id="top"></a>
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="aurora" aria-hidden="true"><b class="a1"></b><b class="a2"></b><b class="a3"></b></div>
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Cal Poly Pomona · Plant Science</span>
+      <h1 class="hero-h1"><span class="w" style="animation-delay:.05s">Growing</span> <span class="w g" style="animation-delay:.13s">food</span> <span class="w" style="animation-delay:.21s">and</span> <span class="w y" style="animation-delay:.29s">energy</span> <span class="w" style="animation-delay:.37s">from</span> <span class="w" style="animation-delay:.45s">the</span> <span class="w" style="animation-delay:.53s">same</span> <span class="w grad" style="animation-delay:.61s">sunlight.</span></h1>
+      <p class="hero-sub">The Sustainable Ag Systems Lab designs agrivoltaic and controlled-environment systems where crops and clean power share one beam of light, engineered, sensed, and modeled from the panel down to the leaf.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#research">Explore the research →</a>
+        <a class="btn btn-ghost" href="#join">Work with us</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><div class="num y count-up" data-end="7">7</div><div class="lab">Peer-reviewed papers</div></div>
+        <div class="stat"><div class="num g count-up" data-end="348" data-prefix="$" data-suffix="K">$348K</div><div class="lab">Grants awarded</div></div>
+        <div class="stat"><div class="num">Joule · EES</div><div class="lab">Flagship venues</div></div>
+      </div>
+    </div>
+
+    <!-- SIGNATURE: spectral beam-split -->
+    <div class="split-viz" aria-label="Diagram: one beam of sunlight splitting into a photosynthesis path and an energy path">
+      <svg viewBox="0 0 400 400" role="img">
+        <!-- sun -->
+        <g class="pulse-sun">
+          <circle cx="200" cy="34" r="18" fill="var(--solar)"/>
+          <g stroke="var(--solar)" stroke-width="2.5" stroke-linecap="round" opacity=".8">
+            <line x1="200" y1="2" x2="200" y2="10"/>
+            <line x1="168" y1="34" x2="176" y2="34"/><line x1="224" y1="34" x2="232" y2="34"/>
+            <line x1="177" y1="11" x2="182" y2="17"/><line x1="223" y1="11" x2="218" y2="17"/>
+          </g>
+        </g>
+        <!-- incoming beam -->
+        <line class="beam draw d1" x1="200" y1="54" x2="200" y2="176" stroke="var(--mist)" stroke-width="3" pathLength="1"/>
+        <!-- splitter panel (semitransparent solar cell) -->
+        <g class="viz-node">
+          <rect x="150" y="168" width="100" height="16" rx="3" transform="rotate(-18 200 176)"
+                fill="rgba(139,107,240,.25)" stroke="var(--violet)" stroke-width="1.5"/>
+          <text x="200" y="150" text-anchor="middle" class="viz-label">semitransparent cell</text>
+        </g>
+        <!-- transmitted green beam -> crop -->
+        <path class="beam draw d2" d="M200 184 L200 300" stroke="var(--leaf)" stroke-width="3.5" pathLength="1"/>
+        <!-- reflected gold beam -> energy -->
+        <path class="beam draw d3" d="M208 172 L330 250" stroke="var(--solar)" stroke-width="3.5" pathLength="1"/>
+
+        <!-- crop node -->
+        <g class="viz-node">
+          <path d="M200 322c-11 0-18-7-18-16 11 0 18 7 18 16zM200 322c11 0 18-7 18-16-11 0-18 7-18 16z" fill="var(--leaf)"/>
+          <line x1="200" y1="300" x2="200" y2="326" stroke="var(--leaf)" stroke-width="2.5"/>
+          <text x="200" y="352" text-anchor="middle" class="viz-label" fill="var(--leaf-soft)">Photosynthesis</text>
+        </g>
+        <!-- energy node -->
+        <g class="viz-node">
+          <rect x="316" y="238" width="28" height="24" rx="4" fill="none" stroke="var(--solar)" stroke-width="2.5"/>
+          <rect x="326" y="232" width="8" height="6" rx="2" fill="var(--solar)"/>
+          <path d="M330 244l-5 8h6l-5 8" fill="none" stroke="var(--solar)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+          <text x="330" y="284" text-anchor="middle" class="viz-label" fill="var(--solar)">Energy</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+<hr class="spectrum-rule" />
+
+<!-- ============ ABOUT ============ -->
+<section class="band" id="about">
+  <div class="wrap about-grid">
+    <div class="reveal">
+      <div class="portrait">
+        <!-- Swap in your headshot: assets/img/eshwar.jpg -->
+        <img src="assets/img/eshwar.jpg" alt="Dr. Eshwar Ravishankar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+        <div class="ph" style="display:none">
+          <div class="ph-ic">👤</div>
+          <div>Add your headshot</div>
+          <code>assets/img/eshwar.jpg</code>
+        </div>
+      </div>
+    </div>
+    <div class="about-body reveal">
+      <span class="eyebrow">Principal Investigator</span>
+      <h2 style="margin-top:16px">Dr. Eshwar Ravishankar</h2>
+      <p class="lead">A mechanical engineer who fell for plants, and now builds the systems where the two disciplines meet.</p>
+      <p>Trained through a Ph.D. in Mechanical Engineering at NC State, I spent years engineering <strong>semitransparent organic solar cells</strong> that let a greenhouse generate its own electricity while the crops beneath still thrive. That question became my research program: how do you divide one photon budget between a harvest and a kilowatt-hour?</p>
+      <p>Today, as Assistant Professor of Plant Science and a <strong>CEMaST Faculty Scholar</strong> at Cal Poly Pomona, my lab works across agrivoltaics, controlled-environment agriculture, and precision remote sensing. We build real hardware, sensor it heavily, and wrap it in energy–water–plant models that tell growers what to do next.</p>
+      <ul class="cred-list">
+        <li><span class="yr">2023–</span><span class="d"><strong>Assistant Professor · CEMaST Faculty Scholar</strong><span>Cal Poly Pomona, Dept. of Plant Science</span></span></li>
+        <li><span class="yr">2021–23</span><span class="d"><strong>Postdoctoral Research Scholar</strong><span>Dept. of Horticultural Science, NC State University</span></span></li>
+        <li><span class="yr">2021</span><span class="d"><strong>Ph.D., Mechanical Engineering</strong><span>NC State University</span></span></li>
+        <li><span class="yr">2019</span><span class="d"><strong>M.S., Mechanical Engineering</strong><span>NC State University</span></span></li>
+        <li><span class="yr">2016</span><span class="d"><strong>B.Tech., Mechanical Engineering</strong><span>Amrita Vishwa Vidyapeetham, India</span></span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+<hr class="spectrum-rule" />
+
+<!-- ============ RESEARCH ============ -->
+<section class="band" id="research">
+  <div class="wrap">
+    <div class="band-head reveal">
+      <span class="eyebrow">What we work on</span>
+      <h2>Five ways to make an acre do more.</h2>
+      <p>Every project shares one idea: treat sunlight, water, and land as a shared budget, then engineer the system that spends it best.</p>
+    </div>
+    <div class="rgrid">
+      <article class="rcard wide reveal">
+        <div class="rn">01</div>
+        <svg class="ric" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="8" width="30" height="16" rx="2"/><path d="M5 16h30M15 8v16M25 8v16"/><path d="M20 24v8M12 32h16"/></svg>
+        <h3>Agrivoltaics</h3>
+        <p>Splitting the spectrum between panels and plants: from planar spectral beam-splitters for open-field farms to AI that steers autonomous agrivoltaic arrays through the day.</p>
+        <div class="tags"><span class="tag">spectral beam-splitting</span><span class="tag">open-field PV</span><span class="tag">US–Israel BARD</span></div>
+      </article>
+      <article class="rcard wide reveal">
+        <div class="rn">02</div>
+        <svg class="ric" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 20 20 8l14 12"/><path d="M9 18v14h22V18"/><path d="M20 8v24M14 22h12"/></svg>
+        <h3>Solar-Powered Greenhouses</h3>
+        <p>Net-zero-energy greenhouses roofed in semitransparent organic solar cells, balancing crop yield against on-site power, validated with genomics and global techno-economics.</p>
+        <div class="tags"><span class="tag">net-zero energy</span><span class="tag">organic PV</span><span class="tag">techno-economics</span></div>
+      </article>
+      <article class="rcard reveal">
+        <div class="rn">03</div>
+        <svg class="ric" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2"><rect x="8" y="6" width="24" height="28" rx="2"/><path d="M14 14h12M14 20h12M14 26h8"/></svg>
+        <h3>Controlled-Environment &amp; Vertical Farming</h3>
+        <p>Automated hydroponic and microgreen systems on a custom-built controller: IoT-sensed, energy-aware, and designed for the city.</p>
+        <div class="tags"><span class="tag">hydroponics</span><span class="tag">custom PCB</span><span class="tag">IoT</span></div>
+      </article>
+      <article class="rcard reveal">
+        <div class="rn">04</div>
+        <svg class="ric" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2"><circle cx="20" cy="20" r="6"/><path d="M20 4v6M20 30v6M4 20h6M30 20h6"/><path d="M31 9l-4 4M9 31l4-4M31 31l-4-4M9 9l4 4"/></svg>
+        <h3>Remote Sensing &amp; Precision Ag</h3>
+        <p>Drones, GIS, and handheld crop sensors turning strawberry fields and orchards into daily data.</p>
+        <div class="tags"><span class="tag">UAV</span><span class="tag">GIS</span></div>
+      </article>
+      <article class="rcard reveal">
+        <div class="rn">05</div>
+        <svg class="ric" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 30V10M6 30h28"/><path d="M10 26l7-9 6 5 8-13" /></svg>
+        <h3>Energy–Water–Plant Modeling &amp; AI</h3>
+        <p>Physics-based models of photosynthesis, greenhouse climate, and water recovery: the decision layer over every system we build.</p>
+        <div class="tags"><span class="tag">crop modeling</span><span class="tag">optimization</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+<hr class="spectrum-rule" />
+
+<!-- ============ IMPACT ============ -->
+<section class="band" id="impact">
+  <div class="wrap">
+    <div class="band-head reveal">
+      <span class="eyebrow">Why it matters</span>
+      <h2>Who our work is for.</h2>
+      <p>Behind every system is a real person deciding how to spend a scarce resource: a beam of light, an acre of land, a kilowatt of power. We build the tools that help them decide.</p>
+    </div>
+    <div class="impact-grid reveal">
+      <div class="icard">
+        <svg class="iic" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 34c0-9 6-15 14-15s14 6 14 15"/><path d="M20 19V8M20 8c-5 0-8-3-8-3s3 6 8 6zM20 12c5 0 8-3 8-3s-3 6-8 6z"/></svg>
+        <h3>Specialty-crop growers in dry climates</h3>
+        <p>Keep land in production <em>and</em> add clean power on the same acre, with field-validated numbers on exactly what yield trades for what energy.</p>
+      </div>
+      <div class="icard">
+        <svg class="iic" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 18 20 7l14 11"/><path d="M9 16v16h22V16"/><path d="M20 32V20"/></svg>
+        <h3>Greenhouse &amp; CEA operators</h3>
+        <p>Drive the energy bill toward net-zero by turning the roof itself into a power source, without giving up the crop underneath.</p>
+      </div>
+      <div class="icard">
+        <svg class="iic" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="6" width="22" height="28" rx="2"/><path d="M15 14h10M15 20h10M15 26h6"/></svg>
+        <h3>Urban &amp; indoor food producers</h3>
+        <p>Grow reliable local food in cities and on marginal land with automated, energy-aware controlled-environment systems.</p>
+      </div>
+      <div class="icard">
+        <svg class="iic" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 4 13l16 7 16-7z"/><path d="M11 17v9c0 2 4 4 9 4s9-2 9-4v-9M34 15v8"/></svg>
+        <h3>The next ag-tech workforce</h3>
+        <p>Train students on the drones, sensors, and models that modern sustainable agriculture actually runs on, hands-on from week one.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<hr class="spectrum-rule" />
+
+<!-- ============ FEATURE: AGRIVOLTAICS FIELD ============ -->
+<section class="feature" id="agrivoltaics">
+  <div class="wrap feature-grid">
+    <div class="feature-text reveal">
+      <span class="eyebrow">Field research · Spadra Farm</span>
+      <h2>An agrivoltaic living lab in the field.</h2>
+      <p class="lead">Five elevated monofacial solar arrays over working crop beds, powering the grid while lettuce grows in their shade.</p>
+      <p>At Cal Poly Pomona's Spadra Farm, we run replicated trials of leafy greens beneath tracker-mounted panels, measuring exactly how much yield we trade for how much energy. Flagged plots, drip lines, and drone flights turn the whole array into a dataset: the field counterpart to the spectral beam-splitting work in the lab.</p>
+      <div class="specs">
+        <div class="spec"><div class="sl">Site</div><div class="sv">Spadra Farm, CPP</div></div>
+        <div class="spec"><div class="sl">Array</div><div class="sv">5 elevated monofacial panels</div></div>
+        <div class="spec"><div class="sl">Crops</div><div class="sv">Lettuce &amp; leafy greens</div></div>
+        <div class="spec"><div class="sl">Measured</div><div class="sv">Yield vs. energy trade-off</div></div>
+      </div>
+    </div>
+    <div class="feature-media reveal">
+      <img class="big" src="assets/img/agv-aerial.jpg" alt="Aerial view of the five-panel agrivoltaic array over crop beds at Spadra Farm, with snow-capped mountains behind" loading="lazy"/>
+      <img src="assets/img/agv-ground.jpg" alt="Rows of lettuce growing under elevated monofacial solar panels, with experimental plot flags" loading="lazy"/>
+    </div>
+  </div>
+</section>
+<hr class="spectrum-rule" />
+
+<!-- ============ FEATURE: INDOOR / CEA ============ -->
+<section class="feature media-left" id="indoor">
+  <div class="wrap feature-grid">
+    <div class="feature-text reveal">
+      <span class="eyebrow">Controlled environment · Indoor</span>
+      <h2>A vertical farm that runs itself.</h2>
+      <p class="lead">We build indoor grow systems that sense, decide, and act, down to the milliliter of nutrient.</p>
+      <p>Our controlled-environment platform pairs a <strong>custom-designed Raspberry Pi hydroponic controller board</strong> with an open-source Mycodo stack. It reads pH, EC, CO₂, temperature, and VPD on a 30-second cadence, then drives a phase-gated flood-and-drain cycle, climate control, and automated pH and nutrient dosing: the same framework re-tuned for microgreens, lettuce, and mushrooms. Students use it to run real crop trials and defend theses on the data it logs.</p>
+      <div class="specs">
+        <div class="spec"><div class="sl">Senses</div><div class="sv">pH · EC · CO₂ · moisture · flow · energy</div></div>
+        <div class="spec"><div class="sl">Acts</div><div class="sv">Dosing · pumps · lights · climate</div></div>
+        <div class="spec"><div class="sl">Crops</div><div class="sv">Microgreens · lettuce · mushrooms</div></div>
+        <div class="spec"><div class="sl">Platform</div><div class="sv">Raspberry Pi 5 · Mycodo · custom board</div></div>
+      </div>
+    </div>
+    <div class="feature-media reveal">
+      <img class="big" src="assets/img/indoor-dashboard.png" alt="Live operator dashboard for the microgreen grow tent: 24-hour climate chart, sump pH/EC/CO2 readouts, and a log of automated GPIO actuator events" loading="lazy"/>
+      <div class="imgcap">Live operator view · custom Mycodo build on Raspberry Pi 5</div>
+      <div class="figure-card">
+        <img src="assets/img/indoor-schematic.png" alt="System schematic: an IoT sensing and actuation network for the grow tent (Raspberry Pi controller, climate actuators, environmental sensors, nutrient dosing, and hydroponic channels), with time-series of pH, EC, and temperature" loading="lazy"/>
+      </div>
+      <div class="imgcap">Full sensing &amp; actuation architecture, with logged pH / EC / temperature</div>
+    </div>
+  </div>
+</section>
+<hr class="spectrum-rule" />
+
+<!-- ============ PUBLICATIONS ============ -->
+<section class="band" id="publications">
+  <div class="wrap">
+    <div class="band-head reveal">
+      <span class="eyebrow">Selected publications</span>
+      <h2>Work that moved the field.</h2>
+      <p>Full list on <a href="https://orcid.org/0000-0001-8684-4113" target="_blank" rel="noopener" style="color:var(--leaf)">ORCID</a> and <a href="https://scholar.google.com/citations?user=nsmYN64AAAAJ&hl=en" target="_blank" rel="noopener" style="color:var(--leaf)">Google Scholar</a>.</p>
+    </div>
+
+    <div class="reveal">
+      <div class="pub">
+        <div class="py">2026</div>
+        <div><p class="pt">Benchmarking Spectrum-Splitting Agrivoltaics Using Spectrally Resolved Ray-Tracing and Crop Modeling for Yield–Microclimate–Energy Balance Across Arid and Humid Climates</p><p class="pa"><strong>Ravishankar, E.</strong>, Vitoshkin, H., Kribus, A., Mittelman, G., Rozenstein, O., Hernández, R.</p></div>
+        <span class="venue mid">Energy Convers. Manag. X</span>
+      </div>
+      <div class="pub">
+        <div class="py">2026</div>
+        <div><p class="pt">Agrivoltaics Can Add Value to High Tunnels in a Subtropical Environment</p><p class="pa">Field, R., Abernathy, B., <strong>Ravishankar, E.</strong>, Cassity-Duffey, K., Vaughn, J.</p></div>
+        <span class="venue std">Agronomy</span>
+      </div>
+      <div class="pub">
+        <div class="py">2020</div>
+        <div><p class="pt">Achieving Net-Zero-Energy Greenhouses by Integrating Semitransparent Organic Solar Cells</p><p class="pa"><strong>Ravishankar, E.</strong>, Booth, R.E., Sederoff, H., Ade, H.W., O'Connor, B.T.</p></div>
+        <span class="venue flag">Joule</span>
+      </div>
+      <div class="pub">
+        <div class="py">2022</div>
+        <div><p class="pt">Organic Solar-Powered Greenhouse Performance Optimization and Global Economic Opportunity</p><p class="pa"><strong>Ravishankar, E.</strong>, et al.</p></div>
+        <span class="venue flag">Energy &amp; Environ. Sci.</span>
+      </div>
+      <div class="pub">
+        <div class="py">2021</div>
+        <div><p class="pt">Balancing Crop Production and Energy Harvesting in Organic Solar-Powered Greenhouses</p><p class="pa"><strong>Ravishankar, E.</strong>, Charles, M., Sederoff, H., Ade, H.W., O'Connor, B.T.</p></div>
+        <span class="venue mid">Cell Rep. Phys. Sci.</span>
+      </div>
+      <div class="pub">
+        <div class="py">2023</div>
+        <div><p class="pt">Genomic Analysis Reveals Emergent Traits of Crops Grown Under Semitransparent Organic Solar Cells</p><p class="pa">Charles, M., Edwards, B., <strong>Ravishankar, E.</strong>, et al.</p></div>
+        <span class="venue mid">Frontiers in Plant Sci.</span>
+      </div>
+      <div class="pub">
+        <div class="py">2020</div>
+        <div><p class="pt">Environmental and Economic Impacts of Solar-Powered Integrated Greenhouses</p><p class="pa">Hollingsworth, J.A., <strong>Ravishankar, E.</strong>, O'Connor, B.T., Johnson, J.X., DeCarolis, J.F.</p></div>
+        <span class="venue std">J. Industrial Ecology</span>
+      </div>
+      <div class="pub">
+        <div class="py">2025</div>
+        <div><p class="pt">Economic Potential of Open-Field Agrivoltaics with Planar Spectral Beam Splitting</p><p class="pa">Mittelman, G., Atiya, V., Vitoshkin, H., Hernández, R., <strong>Ravishankar, E.</strong>, Kribus, A.</p></div>
+        <span class="venue std">Preprint</span>
+      </div>
+    </div>
+  </div>
+</section>
+<hr class="spectrum-rule" />
+
+<!-- ============ SPEAKING ENGAGEMENTS ============ -->
+<section class="band" id="talks">
+  <div class="wrap">
+    <div class="band-head reveal">
+      <span class="eyebrow">Speaking engagements</span>
+      <h2>Catch the lab at ASHS 2026.</h2>
+      <p>The lab is bringing seven oral presentations to the American Society for Horticultural Science Annual Conference, led by our graduate and undergraduate researchers. If you'll be there, come talk agrivoltaics, controlled-environment ag, and machine learning with us.</p>
+    </div>
+    <div class="conf-badge reveal">
+      <span class="cb-name">ASHS Annual Conference 2026</span>
+      <span class="cb-meta">Hyatt Regency Dallas, TX · August 3–7, 2026</span>
+      <span class="cb-count">7 oral talks</span>
+    </div>
+    <div class="talks reveal">
+      <div class="talk">
+        <div class="talk-left">
+          <div class="talk-topic">Machine Learning</div>
+          <span class="talk-when">Tue · Aug 4 · 1:00 PM<span class="sess">Technology Applications in Horticulture #1</span></span>
+        </div>
+        <div class="talk-body">
+          <p class="talk-t">Interpretable Support Vector Machine Modeling Identifies Environmental–Physiological Disease Transition Zones in Tomato</p>
+          <p class="talk-a"><span class="pres">Carson Green</span> presenting · with Corrales, Mattia, Kosaraju &amp; Ravishankar</p>
+        </div>
+      </div>
+      <div class="talk">
+        <div class="talk-left">
+          <div class="talk-topic">Machine Learning</div>
+          <span class="talk-when">Tue · Aug 4 · 1:30 PM<span class="sess">Technology Applications in Horticulture #1</span></span>
+        </div>
+        <div class="talk-body">
+          <p class="talk-t">Machine Learning-Based Crop Recommendation Using Environmental and Edaphic Variables: A Comparative Analysis of Random Forest, SVM, and Neural Network Classifiers</p>
+          <p class="talk-a"><span class="pres">Sai Chandra Kosaraju</span> presenting · with Cao, Le, Green, Mattia &amp; Ravishankar</p>
+        </div>
+      </div>
+      <div class="talk">
+        <div class="talk-left">
+          <div class="talk-topic">Machine Learning</div>
+          <span class="talk-when">Tue · Aug 4 · 1:45 PM<span class="sess">Technology Applications in Horticulture #1</span></span>
+        </div>
+        <div class="talk-body">
+          <p class="talk-t">Evaluating the Predictive Limits of Environmental Variables for Plant Disease Detection and Health Monitoring Using Machine Learning</p>
+          <p class="talk-a"><span class="pres">Sai Chandra Kosaraju</span> presenting · with Le, Cao, Corrales, Green, Mattia &amp; Ravishankar</p>
+        </div>
+      </div>
+      <div class="talk">
+        <div class="talk-left">
+          <div class="talk-topic">Agrivoltaics</div>
+          <span class="talk-when">Wed · Aug 5 · 10:45 AM<span class="sess">Vegetable Crops Management #2</span></span>
+        </div>
+        <div class="talk-body">
+          <p class="talk-t">Seasonal Yield and Physiological Response of Romaine Lettuce Under Fixed-Tilt Agrivoltaics in a Semi-Arid System</p>
+          <p class="talk-a"><span class="pres">Megan Kelly</span> presenting · with Kuhn, Connelly, Campbell Freire, Duong, Briceno, Fox, Cesena Olivas &amp; Ravishankar</p>
+        </div>
+      </div>
+      <div class="talk">
+        <div class="talk-left">
+          <div class="talk-topic">Agrivoltaics · ML</div>
+          <span class="talk-when">Wed · Aug 5 · 11:30 AM<span class="sess">Undergraduate Oral Session 1</span></span>
+        </div>
+        <div class="talk-body">
+          <p class="talk-t">Beyond Mean Yield: Machine Learning Reveals Within-Plot Uniformity as a Key Classifier of Agrivoltaic Lettuce Production</p>
+          <p class="talk-a"><span class="pres">Areesha Imtiaz</span> presenting · with Kelly, Kuhn, Connelly, Campbell Freire, Duong, Briceno, Fox, Cesena Olivas, Kosaraju &amp; Ravishankar</p>
+        </div>
+      </div>
+      <div class="talk">
+        <div class="talk-left">
+          <div class="talk-topic">Agrivoltaics · Soil Microbiome</div>
+          <span class="talk-when">Wed · Aug 5 · 11:45 AM<span class="sess">Undergraduate Oral Session 1</span></span>
+        </div>
+        <div class="talk-body">
+          <p class="talk-t">Fixed-Tilt Agrivoltaic Panels Restructure Soil Fungal Communities and Enrich Plant-Pathogenic Genera in a Semi-Arid Romaine Lettuce System</p>
+          <p class="talk-a"><span class="pres">Areesha Imtiaz</span> presenting · with Kelly, Kuhn, Connelly, Campbell Freire, Duong, Briceno, Fox, Cesena Olivas &amp; Kosaraju</p>
+        </div>
+      </div>
+      <div class="talk">
+        <div class="talk-left">
+          <div class="talk-topic">Controlled-Environment Ag</div>
+          <span class="talk-when">Wed · Aug 5 · 1:00 PM<span class="sess">Undergraduate Oral Session 1</span></span>
+        </div>
+        <div class="talk-body">
+          <p class="talk-t">Integrating Low-Cost Adaptive Nutrient Control with Time-Series Modeling to Improve Growth Prediction and Resource Efficiency in Indoor and Greenhouse Lettuce Production</p>
+          <p class="talk-a"><span class="pres">Gerardo Gutierrez</span> presenting · with Mattia, Kosaraju &amp; Ravishankar</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<hr class="spectrum-rule" />
+
+<!-- ============ FUNDING ============ -->
+<section class="band" id="funding">
+  <div class="wrap">
+    <div class="band-head reveal">
+      <span class="eyebrow">Funding &amp; grants</span>
+      <h2>Backed to build real systems.</h2>
+    </div>
+    <div class="fund-top reveal">
+      <div class="fchip"><div class="fn">$348K</div><div class="fl">Funding awarded</div></div>
+      <div class="fchip"><div class="fn">$210K</div><div class="fl">As Principal Investigator</div></div>
+      <div class="fchip"><div class="fn">11</div><div class="fl">Funded grants &amp; awards</div></div>
+    </div>
+    <div class="grants reveal">
+      <div class="grant"><div><div class="gt">Development of Low-Cost Unmanned Aerial &amp; Ground Vehicle Platforms for Precision Farming</div><div class="gm">Agricultural Research Institute (ARI) · Co-PI · 2024–26 · #25-04-669</div></div><span class="gr">$122K · Funded</span></div>
+      <div class="grant"><div><div class="gt">Field-Validated Agrivoltaic Decision Support for Southern California Specialty Crop Systems</div><div class="gm">ARI Campus Grant, Cal Poly Pomona · PI · FY2026–27 · #27-04-108</div></div><span class="gr">$100K · Funded</span></div>
+      <div class="grant"><div><div class="gt">Upgrading the Plant Science Lab with a New Gas-Exchange Measurement System</div><div class="gm">CPP SPICE · Equipment Modernization · PI · 2025</div></div><span class="gr">$24K · Funded</span></div>
+      <div class="grant"><div><div class="gt">IntelliGrow-AI: An AI-Driven Decision-Support Platform for California Nursery &amp; Greenhouse Production</div><div class="gm">Plant California Alliance / CANERS Foundation · PI · 2026</div></div><span class="gr">$20K · Funded</span></div>
+      <div class="grant"><div><div class="gt">Next-Gen Mycology: Integrating AI, IoT, and Biotechnology for Sustainable Fungal Production</div><div class="gm">CPP SPICE · Innovative Instruction · PI · 2025</div></div><span class="gr">$17K · Funded</span></div>
+      <div class="grant"><div><div class="gt">Running RO Like a Cyclic Engine: Maximizing Water Recovery and Efficiency for Urban Farming</div><div class="gm">CPP Strategic Interdisciplinary Research Grant · Co-PI · 2024</div></div><span class="gr">$15K · Funded</span></div>
+      <div class="grant"><div><div class="gt">Model-Based Decision-Making Tool for Controlled-Environment Agriculture</div><div class="gm">NC State CEA Center · sub-award · PI · 2024–25</div></div><span class="gr">$13K · Funded</span></div>
+      <div class="grant"><div><div class="gt">Cultivating Tomorrow's Workforce: Undergraduate Classroom Learning in Precision Farming</div><div class="gm">CPP SPICE · Innovative Instruction · PI · 2024</div></div><span class="gr">$10K · Funded</span></div>
+      <div class="grant"><div><div class="gt">Enabling Energy-Resilient California Greenhouses via Crop-Coupled Semitransparent Organic PV</div><div class="gm">ARI Seed Grant, Cal Poly Pomona · PI · FY2026–27 · #27-04-119</div></div><span class="gr">$10K · Funded</span></div>
+      <div class="grant"><div><div class="gt">Innovative Cultivation Solutions: An Automated Hydroponic System for Vertical Microgreens</div><div class="gm">RSCA, Cal Poly Pomona · PI · 2024</div></div><span class="gr">$10K · Funded</span></div>
+      <div class="grant"><div><div class="gt">Cal Poly Pomona Freight Farm Produce-Sourcing Partnership</div><div class="gm">Partnership for Growth LA / Freedom Farms · Project lead · 2026</div></div><span class="gr">$7K · Funded</span></div>
+    </div>
+
+    <div class="thanks reveal">
+      <div class="thanks-h">With gratitude to the sponsors who fund this work</div>
+      <div class="chip-row">
+        <span class="pchip">Agricultural Research Institute</span>
+        <span class="pchip">Plant California Alliance / CANERS</span>
+        <span class="pchip">CPP SPICE</span>
+        <span class="pchip">RSCA · Cal Poly Pomona</span>
+        <span class="pchip">Partnership for Growth LA</span>
+        <span class="pchip">NC State CEA Center</span>
+      </div>
+    </div>
+    <div class="thanks reveal">
+      <div class="thanks-h">Partners &amp; collaborators</div>
+      <div class="chip-row">
+        <span class="pchip">NC State University</span>
+        <span class="pchip">University of Georgia</span>
+        <span class="pchip">Tel Aviv University &amp; ARO, Israel</span>
+        <span class="pchip">CEMaST · Cal Poly Pomona</span>
+        <span class="pchip">Spadra Farm</span>
+      </div>
+    </div>
+  </div>
+</section>
+<hr class="spectrum-rule" />
+
+<!-- ============ TEACHING ============ -->
+<section class="band" id="teaching">
+  <div class="wrap">
+    <div class="band-head reveal">
+      <span class="eyebrow">In the classroom</span>
+      <h2>Teaching the polytechnic way: learn by building.</h2>
+      <p>My courses put drones, Raspberry Pi sensors, live crops, and real data in students' hands from week one.</p>
+    </div>
+
+    <div class="tgallery reveal">
+      <figure class="lead-img"><img src="assets/img/teaching-drone.jpg" alt="Students gathered around an agricultural spray drone during a precision-agriculture field session in a citrus orchard" loading="lazy"/></figure>
+      <figure><img src="assets/img/teaching-plots.jpg" alt="Students preparing research plots beneath the agrivoltaic solar array" loading="lazy"/></figure>
+      <figure><img src="assets/img/teaching-lab.jpg" alt="Students examining flowers during a hands-on plant science lab in the makerspace" loading="lazy"/></figure>
+    </div>
+
+    <div class="tgrid reveal">
+      <div class="tcard">
+        <span class="tlvl">Intro</span>
+        <div class="tc">PLT 1120 / 1120L</div>
+        <h3>Plant Science 1</h3>
+        <p>Introductory plant biology paired with a hands-on lab: students seed, grow, and measure crops in hydroponic and vertical-farm systems and take leaf gas-exchange readings out at Spadra Farm.</p>
+      </div>
+      <div class="tcard">
+        <span class="tlvl">Upper-division</span>
+        <div class="tc">PLT 3020</div>
+        <h3>Technology Innovations in Plant Science</h3>
+        <p>Precision agriculture, remote sensing, IoT, and AI. Students build Raspberry Pi crop sensors, run GPS/GIS and LANDSAT/NDVI mapping, and complete a real project at the AgriScapes farm.</p>
+      </div>
+      <div class="tcard">
+        <span class="tlvl">Upper-division</span>
+        <div class="tc">PLT 4210 / 4210L</div>
+        <h3>Production Mycology</h3>
+        <p>Mushroom cultivation from fungal ID to fruiting, with IoT climate control and automation. Students build a small-scale production system and pitch it to Southern California growers.</p>
+      </div>
+      <div class="tcard">
+        <span class="tlvl">Graduate</span>
+        <div class="tc">AG 5200</div>
+        <h3>Statistics in Agriculture, Python Edition</h3>
+        <p>A graduate stats course rebuilt around the modern Python stack: experimental design, regression, growth curves, and machine learning on real agricultural datasets.</p>
+      </div>
+      <div class="tcard soon">
+        <span class="tlvl">Spring 2027</span>
+        <div class="tc">PLT 4020</div>
+        <h3>Agricultural Drone Technology</h3>
+        <p>A new course launching soon: FAA Part 107 remote-pilot preparation and turning multispectral and thermal drone imagery into agronomic decisions.</p>
+      </div>
+    </div>
+
+    <p class="teach-note reveal">Two of these courses, <strong>PLT 3020</strong> and <strong>PLT 4210</strong>, earned Cal Poly Pomona's <strong>PolyX</strong> polytechnic-signature-experience designation for their build-and-operate design, and the lab's instructional work has twice been backed by <strong>SPICE</strong> classroom-innovation awards.</p>
+
+    <div class="teach-extra reveal">
+      <div class="thanks-h">Hands-on in every course</div>
+      <div class="chip-row">
+        <span class="pchip">FAA Part 107 drone flight</span>
+        <span class="pchip">Multispectral &amp; thermal imaging</span>
+        <span class="pchip">GIS &amp; NDVI crop mapping</span>
+        <span class="pchip">Raspberry Pi sensor &amp; controller builds</span>
+        <span class="pchip">Custom PCB design</span>
+        <span class="pchip">Automated hydroponics &amp; mycology</span>
+      </div>
+    </div>
+
+    <div class="tools reveal">
+      <div class="tt">
+        <h3>Photosynthesis Explorer</h3>
+        <p>An interactive teaching tool I built: students adjust light, CO₂, and temperature and watch a live photosynthesis model respond. Free to use in class.</p>
+      </div>
+      <a class="btn btn-primary" href="tools/photosynthesis-explorer/index.html" target="_blank" rel="noopener">Open the tool →</a>
+    </div>
+  </div>
+</section>
+<hr class="spectrum-rule" />
+
+<!-- ============ TEAM ============ -->
+<section class="band" id="team">
+  <div class="wrap">
+    <div class="band-head reveal">
+      <span class="eyebrow">The people</span>
+      <h2>The lab is its people.</h2>
+      <p>Engineers, biologists, and builders who like to make things grow. Here's who you'd be working alongside.</p>
+    </div>
+    <div class="team-grid reveal">
+      <!-- PI -->
+      <div class="member">
+        <div class="avatar">
+          <img src="assets/img/eshwar.jpg" alt="Dr. Eshwar Ravishankar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+          <div class="ph" style="display:none"><div class="ph-ic">👤</div><code>assets/img/eshwar.jpg</code></div>
+        </div>
+        <h3>Dr. Eshwar Ravishankar</h3>
+        <div class="role">Principal Investigator</div>
+        <p>Mechanical engineer turned plant scientist; builds the systems where food and energy meet.</p>
+      </div>
+      <!-- STUDENTS -->
+      <div class="member">
+        <div class="avatar">
+          <img src="assets/img/team/emma-nguyen.jpg" alt="Emma Nguyen" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+          <div class="ph" style="display:none"><div class="ph-ic">🌱</div><code>assets/img/team/emma-nguyen.jpg</code></div>
+        </div>
+        <h3>Emma Nguyen</h3>
+        <div class="role">Undergraduate Researcher</div>
+        <p>Plant Science · Spadra Farm agrivoltaics.</p>
+      </div>
+      <div class="member">
+        <div class="avatar">
+          <img src="assets/img/team/nathaniel-cox.jpg" alt="Nathaniel Cox" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+          <div class="ph" style="display:none"><div class="ph-ic">🌱</div><code>assets/img/team/nathaniel-cox.jpg</code></div>
+        </div>
+        <h3>Nathaniel Cox</h3>
+        <div class="role">Undergraduate Researcher</div>
+        <p>Mechanical Engineering · Spadra Farm agrivoltaics.</p>
+      </div>
+      <div class="member">
+        <div class="avatar">
+          <img src="assets/img/team/jai-sutaria.jpg" alt="Jai Sutaria" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+          <div class="ph" style="display:none"><div class="ph-ic">🌱</div><code>assets/img/team/jai-sutaria.jpg</code></div>
+        </div>
+        <h3>Jai Sutaria</h3>
+        <div class="role">Undergraduate Researcher</div>
+        <p>Mechanical Engineering, minor in Computer Science · AgriScapes greenhouses. Oscar Perlaza President's Scholar.</p>
+      </div>
+      <div class="member">
+        <div class="avatar">
+          <img src="assets/img/team/justin-pemberton.jpg" alt="Justin Pemberton" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+          <div class="ph" style="display:none"><div class="ph-ic">🌱</div><code>assets/img/team/justin-pemberton.jpg</code></div>
+        </div>
+        <h3>Justin Pemberton</h3>
+        <div class="role">Undergraduate Researcher</div>
+        <p>Computer Science · AgriScapes greenhouses.</p>
+      </div>
+      <div class="member">
+        <div class="avatar">
+          <img src="assets/img/team/chelsea.jpg" alt="Chelsea Licon" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+          <div class="ph" style="display:none"><div class="ph-ic">🌱</div><code>assets/img/team/chelsea.jpg</code></div>
+        </div>
+        <h3>Chelsea Licon</h3>
+        <div class="role">Research Technician</div>
+        <p>B.S. Plant Science · AgriScapes greenhouses.</p>
+      </div>
+      <div class="member">
+        <div class="avatar">
+          <img src="assets/img/team/marty.jpg" alt="Marty Munoz" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+          <div class="ph" style="display:none"><div class="ph-ic">🌱</div><code>assets/img/team/marty.jpg</code></div>
+        </div>
+        <h3>Marty Munoz</h3>
+        <div class="role">Research Technician</div>
+        <p>B.S. Plant Science · AgriScapes greenhouses.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<hr class="spectrum-rule" />
+
+<!-- ============ NEWS ============ -->
+<section class="band" id="news">
+  <div class="wrap">
+    <div class="band-head reveal">
+      <span class="eyebrow">Recent activity</span>
+      <h2>What's new in the lab.</h2>
+      <p>Papers, grants, and milestones as they happen. Send me your latest talks, awards, and new members to keep this current.</p>
+    </div>
+    <div class="news reveal">
+      <div class="nitem"><div class="nd">2026</div><div class="nb"><span class="ntag milestone">Talks</span>Seven lab abstracts accepted for <strong>oral presentation at ASHS 2026</strong> (Dallas, Aug 3–7), all led by our graduate and undergraduate researchers, across agrivoltaics, controlled-environment ag, and machine learning. <a href="#talks" style="color:var(--leaf)">See the lineup →</a></div></div>
+      <div class="nitem"><div class="nd">2026</div><div class="nb"><span class="ntag paper">Paper</span>New first-author study in <strong>Energy Conversion &amp; Management: X</strong> benchmarks spectrum-splitting agrivoltaics with spectrally resolved ray-tracing and mechanistic crop modeling, improving water-use efficiency ~15% while holding yields within 5–12% of open-field across arid and humid climates. <a href="https://doi.org/10.1016/j.ecmx.2026.101987" target="_blank" rel="noopener" style="color:var(--leaf)">Read it →</a></div></div>
+      <div class="nitem"><div class="nd">2026</div><div class="nb"><span class="ntag paper">Paper</span>Collaboration with the University of Georgia published in <strong>Agronomy</strong>, showing agrivoltaic high tunnels can power themselves and still hold crop yield in a subtropical climate. <a href="https://doi.org/10.3390/agronomy16131299" target="_blank" rel="noopener" style="color:var(--leaf)">Read it →</a></div></div>
+      <div class="nitem"><div class="nd">2025</div><div class="nb"><span class="ntag press">Press</span>Cal Poly Pomona spotlights the <strong>Spadra Farm agrivoltaic project</strong>: romaine lettuce grown beneath solar panels in what's believed to be Southern California's first commercial agrivoltaic system. <a href="https://www.cpp.edu/agri/news/2025-agrivoltaics.shtml" target="_blank" rel="noopener" style="color:var(--leaf)">Read the story →</a></div></div>
+      <div class="nitem"><div class="nd">2025</div><div class="nb"><span class="ntag paper">Paper</span>Preprint released: <strong>Economic Potential of Open-Field Agrivoltaics with Planar Spectral Beam Splitting</strong>, with collaborators in Israel.</div></div>
+      <div class="nitem"><div class="nd">2023</div><div class="nb"><span class="ntag milestone">Milestone</span>Launched the <strong>Sustainable Ag Systems Lab</strong> at Cal Poly Pomona and was named a <strong>CEMaST Faculty Scholar</strong>.</div></div>
+      <div class="nitem"><div class="nd">2023</div><div class="nb"><span class="ntag paper">Paper</span>Genomic analysis of crops grown under semitransparent organic solar cells published in <strong>Frontiers in Plant Science</strong>.</div></div>
+      <div class="nitem"><div class="nd">2022</div><div class="nb"><span class="ntag paper">Paper</span>Global techno-economic study of solar-powered greenhouses published in <strong>Energy &amp; Environmental Science</strong>.</div></div>
+      <div class="nitem"><div class="nd">2020</div><div class="nb"><span class="ntag paper">Paper</span>The net-zero-energy greenhouse concept published in <strong>Joule</strong>.</div></div>
+    </div>
+  </div>
+</section>
+<hr class="spectrum-rule" />
+
+<!-- ============ JOIN ============ -->
+<section class="band" id="join">
+  <div class="wrap">
+    <div class="join reveal">
+      <span class="eyebrow" style="justify-content:center">Join the lab</span>
+      <h2>If sunlight, sensors, and crops all excite you, let's talk.</h2>
+      <p>I mentor students who like to build things that grow. Whether you come from engineering, biology, computer science, or the soil itself, there's a bench for you.</p>
+      <div class="who">
+        <span>Prospective grad students</span>
+        <span>CPP undergrads</span>
+        <span>Collaborators</span>
+        <span>Industry partners</span>
+      </div>
+      <a class="btn btn-primary" href="mailto:eravishankar@cpp.edu">Email Dr. Ravishankar →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer id="contact">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand"><svg class="mark"><use href="#mark"/></svg> Sustainable Ag Systems Lab</div>
+        <p>Engineering the systems where food and clean energy grow from the same sunlight.</p>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:eravishankar@cpp.edu">eravishankar@cpp.edu</a></li>
+          <li><a href="tel:+19098694367">(909) 869-4367</a></li>
+          <li><a>3801 W. Temple Ave.<br>Pomona, CA 91768</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Elsewhere</h4>
+        <ul>
+          <li><a href="https://orcid.org/0000-0001-8684-4113" target="_blank" rel="noopener">ORCID ↗</a></li>
+          <li><a href="https://scholar.google.com/citations?user=nsmYN64AAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar ↗</a></li>
+          <li><a href="https://www.cpp.edu" target="_blank" rel="noopener">CPP Plant Science ↗</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>© 2026 Eshwar Ravishankar · Cal Poly Pomona</span>
+      <span>Built with sunlight ☀</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  // ---- mobile nav ----
+  var t=document.getElementById('navtoggle'),l=document.getElementById('navlinks');
+  t&&t.addEventListener('click',function(){l.classList.toggle('open')});
+  l&&l.addEventListener('click',function(e){if(e.target.tagName==='A')l.classList.remove('open')});
+
+  // ---- scroll reveal (also reveals anything already scrolled past, so fast jumps never strand content) ----
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){
+    if(e.isIntersecting||(e.rootBounds&&e.boundingClientRect.top<e.rootBounds.height)){e.target.classList.add('in');io.unobserve(e.target)}
+  })},{threshold:.12,rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+
+  // ---- nav scrolled state + scroll progress (single rAF-throttled handler) ----
+  var nav=document.querySelector('header.nav'),bar=document.getElementById('progress'),ticking=false;
+  function onScroll(){
+    if(ticking)return; ticking=true;
+    requestAnimationFrame(function(){
+      var y=window.scrollY||window.pageYOffset;
+      if(nav)nav.classList.toggle('scrolled',y>40);
+      if(bar){var h=document.documentElement.scrollHeight-window.innerHeight;
+        bar.style.transform='scaleX('+(h>0?Math.min(y/h,1):0)+')';}
+      ticking=false;
+    });
+  }
+  window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
+
+  // ---- count-up on hero stats ----
+  function countUp(el){
+    var end=parseFloat(el.dataset.end)||0,pre=el.dataset.prefix||'',suf=el.dataset.suffix||'';
+    if(reduce){el.textContent=pre+end+suf;return;}
+    var start=null,dur=1400;
+    function step(ts){
+      if(!start)start=ts; var p=Math.min((ts-start)/dur,1);
+      var e=1-Math.pow(1-p,3); // easeOutCubic
+      el.textContent=pre+Math.round(end*e)+suf;
+      if(p<1)requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  var cio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){countUp(e.target);cio.unobserve(e.target)}})},{threshold:.6});
+  document.querySelectorAll('.count-up').forEach(function(el){cio.observe(el)});
+
+  if(!canHover||reduce)return; // effects below are pointer + motion gated
+
+  // ---- additive cursor glow ----
+  var glow=document.createElement('div'); glow.className='cursor-glow'; document.body.appendChild(glow);
+  var gx=0,gy=0,gTick=false;
+  window.addEventListener('mousemove',function(e){
+    gx=e.clientX; gy=e.clientY;
+    if(gTick)return; gTick=true;
+    requestAnimationFrame(function(){glow.style.transform='translate3d('+gx+'px,'+gy+'px,0) translate(-50%,-50%)';glow.style.opacity='1';gTick=false;});
+  },{passive:true});
+  window.addEventListener('mouseleave',function(){glow.style.opacity='0';});
+
+  // ---- spotlight cards (mouse-tracked radial glow) ----
+  document.querySelectorAll('.rcard,.icard,.tcard,.member').forEach(function(card){
+    var pending=false,mx=0,my=0;
+    card.addEventListener('mousemove',function(e){
+      var r=card.getBoundingClientRect(); mx=e.clientX-r.left; my=e.clientY-r.top;
+      if(pending)return; pending=true;
+      requestAnimationFrame(function(){card.style.setProperty('--mx',mx+'px');card.style.setProperty('--my',my+'px');pending=false;});
+    },{passive:true});
+  });
+
+  // ---- magnetic primary CTAs ----
+  document.querySelectorAll('.btn-primary,.nav-cta').forEach(function(btn){
+    var pending=false,tx=0,ty=0;
+    btn.addEventListener('mousemove',function(e){
+      var r=btn.getBoundingClientRect();
+      tx=(e.clientX-r.left-r.width/2)*.28; ty=(e.clientY-r.top-r.height/2)*.4;
+      if(pending)return; pending=true;
+      requestAnimationFrame(function(){btn.style.transform='translate('+tx+'px,'+ty+'px)';pending=false;});
+    },{passive:true});
+    btn.addEventListener('mouseleave',function(){btn.style.transform='';});
+  });
+})();
+</script>
+</body>
+</html>

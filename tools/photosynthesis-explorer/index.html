@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photosynthesis Explorer</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+</head>
+<body>
+
+<header>
+    <div class="header-inner">
+        <h1>Photosynthesis Explorer</h1>
+        <p class="subtitle">Interactive Teaching Tool &mdash; Cal Poly Pomona</p>
+    </div>
+</header>
+
+<nav class="tab-bar">
+    <button class="tab active" data-tab="light-quality">1. Light Quality</button>
+    <button class="tab" data-tab="light-intensity">2. Light Intensity</button>
+    <button class="tab" data-tab="co2">3. CO&#8322; Concentration</button>
+    <button class="tab" data-tab="temperature">4. Temperature</button>
+    <button class="tab" data-tab="water">5. Water &amp; Stomata</button>
+    <button class="tab" data-tab="photorespiration">6. Photorespiration</button>
+    <button class="tab" data-tab="mechanisms">7. C3 / C4 / CAM</button>
+    <button class="tab" data-tab="source-sink">8. Source&ndash;Sink</button>
+</nav>
+
+<main>
+
+    <!-- ============================================================ -->
+    <!-- TAB 1: LIGHT QUALITY -->
+    <!-- ============================================================ -->
+    <section id="light-quality" class="panel active">
+        <div class="panel-intro">
+            <h2>Light Quality: Wavelength &amp; Color</h2>
+            <p>Plants absorb light selectively. Chlorophyll <em>a</em> and <em>b</em> absorb strongly in the blue (430&ndash;460 nm) and red (640&ndash;680 nm) regions, while reflecting green light &mdash; which is why leaves look green. Carotenoids extend absorption into the 400&ndash;500 nm range.</p>
+        </div>
+        <div class="panel-body">
+            <div class="controls">
+                <div class="key-insight">
+                    <strong>Key Insight</strong>
+                    <p>The <em>action spectrum</em> of photosynthesis closely mirrors the combined absorption of photosynthetic pigments. Red and blue light drive photosynthesis most efficiently; green light is mostly reflected or transmitted.</p>
+                </div>
+                <h3>Show / Hide Spectra</h3>
+                <label class="cb-label"><input type="checkbox" id="lq-chla" checked> <span class="cb-swatch" style="background:#1b9e77"></span> Chlorophyll <em>a</em></label>
+                <label class="cb-label"><input type="checkbox" id="lq-chlb" checked> <span class="cb-swatch" style="background:#7570b3"></span> Chlorophyll <em>b</em></label>
+                <label class="cb-label"><input type="checkbox" id="lq-carot" checked> <span class="cb-swatch" style="background:#d95f02"></span> Carotenoids</label>
+                <label class="cb-label"><input type="checkbox" id="lq-action" checked> <span class="cb-swatch" style="background:#e7298a"></span> Action Spectrum</label>
+                <label class="cb-label"><input type="checkbox" id="lq-par" checked> <span class="cb-swatch" style="background:rgba(255,215,0,0.2); border:1px solid #cca600"></span> PAR Band (400&ndash;700 nm)</label>
+            </div>
+            <div class="plot-area">
+                <div id="plot-lq" class="plot"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- TAB 2: LIGHT INTENSITY -->
+    <!-- ============================================================ -->
+    <section id="light-intensity" class="panel">
+        <div class="panel-intro">
+            <h2>Light Intensity: The Light Response Curve</h2>
+            <p>Net photosynthesis (A<sub>n</sub>) increases with photosynthetic photon flux density (PPFD) but saturates at high light. The shape of this curve is governed by the maximum photosynthetic rate (A<sub>max</sub>), the quantum yield (&alpha;), and dark respiration (R<sub>d</sub>).</p>
+        </div>
+        <div class="panel-body">
+            <div class="controls">
+                <div class="key-insight">
+                    <strong>Key Insight</strong>
+                    <p>The <em>light compensation point</em> is where photosynthesis exactly balances respiration (A<sub>n</sub> = 0). Above the <em>light saturation point</em>, more light gives diminishing returns.</p>
+                </div>
+                <label>A<sub>max</sub> (&mu;mol CO&#8322;/m&sup2;/s)
+                    <input type="range" id="li-amax" min="5" max="50" step="1" value="25">
+                    <span class="slider-val" id="li-amax-val">25</span>
+                </label>
+                <label>Quantum yield &alpha; (mol CO&#8322;/mol photons)
+                    <input type="range" id="li-alpha" min="0.01" max="0.08" step="0.005" value="0.05">
+                    <span class="slider-val" id="li-alpha-val">0.050</span>
+                </label>
+                <label>Dark respiration R<sub>d</sub> (&mu;mol/m&sup2;/s)
+                    <input type="range" id="li-rd" min="0" max="5" step="0.25" value="1.5">
+                    <span class="slider-val" id="li-rd-val">1.5</span>
+                </label>
+            </div>
+            <div class="plot-area">
+                <div id="plot-li" class="plot"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- TAB 3: CO2 CONCENTRATION -->
+    <!-- ============================================================ -->
+    <section id="co2" class="panel">
+        <div class="panel-intro">
+            <h2>CO&#8322; Concentration: The A&ndash;C<sub>i</sub> Curve</h2>
+            <p>The relationship between net assimilation (A<sub>n</sub>) and intercellular CO&#8322; (C<sub>i</sub>) reveals two key limitations: at low C<sub>i</sub>, Rubisco carboxylation limits photosynthesis; at high C<sub>i</sub>, electron transport (RuBP regeneration) becomes limiting.</p>
+        </div>
+        <div class="panel-body">
+            <div class="controls">
+                <div class="key-insight">
+                    <strong>Key Insight</strong>
+                    <p>At current ambient CO&#8322; (~420 ppm), C3 plants are <em>not</em> CO&#8322;-saturated. Enriching to 800&ndash;1000 ppm typically boosts photosynthesis 30&ndash;50%. This is the basis for CO&#8322; enrichment in greenhouses.</p>
+                </div>
+                <label>V<sub>cmax25</sub> (&mu;mol/m&sup2;/s)
+                    <input type="range" id="co2-vcmax" min="20" max="200" step="5" value="80">
+                    <span class="slider-val" id="co2-vcmax-val">80</span>
+                </label>
+                <label>J<sub>max25</sub> (&mu;mol/m&sup2;/s)
+                    <input type="range" id="co2-jmax" min="40" max="400" step="10" value="150">
+                    <span class="slider-val" id="co2-jmax-val">150</span>
+                </label>
+                <label>PPFD (&mu;mol/m&sup2;/s)
+                    <input type="range" id="co2-ppfd" min="100" max="2000" step="50" value="1000">
+                    <span class="slider-val" id="co2-ppfd-val">1000</span>
+                </label>
+                <label>Leaf temperature (&deg;C)
+                    <input type="range" id="co2-temp" min="10" max="45" step="1" value="25">
+                    <span class="slider-val" id="co2-temp-val">25</span>
+                </label>
+                <label class="cb-label"><input type="checkbox" id="co2-show-components" checked> Show Rubisco &amp; RuBP limitation curves</label>
+            </div>
+            <div class="plot-area">
+                <div id="plot-co2" class="plot"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- TAB 4: TEMPERATURE -->
+    <!-- ============================================================ -->
+    <section id="temperature" class="panel">
+        <div class="panel-intro">
+            <h2>Temperature: Enzyme Kinetics &amp; Thermal Optimum</h2>
+            <p>Photosynthetic enzymes have temperature-dependent activity. As temperature rises, reaction rates increase (Arrhenius kinetics) until an optimum, beyond which enzyme deactivation causes a steep decline. Different species have different thermal optima.</p>
+        </div>
+        <div class="panel-body">
+            <div class="controls">
+                <div class="key-insight">
+                    <strong>Key Insight</strong>
+                    <p>The photosynthetic optimum reflects a balance: Rubisco activity rises with temperature, but so does photorespiration. High temperatures also denature proteins. Cool-season crops (lettuce, spinach) peak at 20&ndash;25&deg;C; warm-season crops (tomato) peak at 30&ndash;35&deg;C.</p>
+                </div>
+                <label>PPFD (&mu;mol/m&sup2;/s)
+                    <input type="range" id="temp-ppfd" min="200" max="2000" step="50" value="1000">
+                    <span class="slider-val" id="temp-ppfd-val">1000</span>
+                </label>
+                <label>CO&#8322; (ppm)
+                    <input type="range" id="temp-co2" min="200" max="1200" step="50" value="400">
+                    <span class="slider-val" id="temp-co2-val">400</span>
+                </label>
+                <h3>Compare species</h3>
+                <label class="cb-label"><input type="checkbox" id="temp-lettuce" checked> <span class="cb-swatch" style="background:#2d6a4f"></span> Lettuce (cool-season)</label>
+                <label class="cb-label"><input type="checkbox" id="temp-tomato" checked> <span class="cb-swatch" style="background:#e63946"></span> Tomato (warm-season)</label>
+                <label class="cb-label"><input type="checkbox" id="temp-cucumber" checked> <span class="cb-swatch" style="background:#457b9d"></span> Cucumber (warm-season)</label>
+                <label class="cb-label"><input type="checkbox" id="temp-show-vcmax" > Show V<sub>cmax</sub>(T) and J<sub>max</sub>(T) curves</label>
+            </div>
+            <div class="plot-area">
+                <div id="plot-temp" class="plot"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- TAB 5: WATER & STOMATA -->
+    <!-- ============================================================ -->
+    <section id="water" class="panel">
+        <div class="panel-intro">
+            <h2>Water Availability &amp; Stomatal Conductance</h2>
+            <p>Stomata are the gatekeepers: they open to let CO&#8322; in for photosynthesis but lose water vapor in the process. When vapor pressure deficit (VPD) is high or soil water is low, stomata close to conserve water &mdash; at the cost of reduced photosynthesis.</p>
+        </div>
+        <div class="panel-body">
+            <div class="controls">
+                <div class="key-insight">
+                    <strong>Key Insight</strong>
+                    <p>As soil dries, stomata close &rarr; less transpiration &rarr; <strong>leaf loses evaporative cooling</strong> &rarr; leaf temperature rises above air &rarr; more photorespiration + enzyme damage. The <span style="color:#e74c3c">red shaded area</span> (top plot) shows leaf heating. The <span style="color:#e74c3c">red gap</span> (bottom plot) shows how much MORE photosynthesis drops because of this heating &mdash; beyond what stomatal closure alone would cause.</p>
+                </div>
+                <label>Stomatal sensitivity g<sub>1</sub> (kPa<sup>0.5</sup>)
+                    <input type="range" id="water-g1" min="1" max="12" step="0.5" value="4.0">
+                    <span class="slider-val" id="water-g1-val">4.0</span>
+                </label>
+                <label>Min. conductance g<sub>0</sub> (mol/m&sup2;/s)
+                    <input type="range" id="water-g0" min="0" max="0.05" step="0.005" value="0.01">
+                    <span class="slider-val" id="water-g0-val">0.010</span>
+                </label>
+                <label>PPFD (&mu;mol/m&sup2;/s)
+                    <input type="range" id="water-ppfd" min="200" max="2000" step="50" value="1500">
+                    <span class="slider-val" id="water-ppfd-val">1500</span>
+                </label>
+                <label>Air temperature (&deg;C)
+                    <input type="range" id="water-temp" min="15" max="40" step="1" value="30">
+                    <span class="slider-val" id="water-temp-val">30</span>
+                </label>
+                <label>Air relative humidity (%)
+                    <input type="range" id="water-rh" min="20" max="80" step="5" value="40">
+                    <span class="slider-val" id="water-rh-val">40</span>
+                </label>
+            </div>
+            <div class="plot-area two-plots">
+                <div id="plot-water-gs" class="plot-half"></div>
+                <div id="plot-water-an" class="plot-half"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- TAB 6: PHOTORESPIRATION -->
+    <!-- ============================================================ -->
+    <section id="photorespiration" class="panel">
+        <div class="panel-intro">
+            <h2>Photorespiration: The Rubisco Problem</h2>
+            <p>Rubisco can fix either CO&#8322; (carboxylation &rarr; photosynthesis) or O&#8322; (oxygenation &rarr; photorespiration). At current atmospheric levels (~21% O&#8322;, 0.04% CO&#8322;), about 25% of Rubisco reactions fix O&#8322; instead of CO&#8322; in C3 plants, wasting energy.</p>
+        </div>
+        <div class="panel-body">
+            <div class="controls">
+                <div class="key-insight">
+                    <strong>Key Insight</strong>
+                    <p>Photorespiration increases with temperature because the CO&#8322;/O&#8322; specificity of Rubisco decreases. At 2% O&#8322; (lab conditions), photorespiration is nearly eliminated and the CO&#8322; compensation point (&Gamma;*) drops dramatically.</p>
+                </div>
+                <label>O&#8322; concentration (%)
+                    <input type="range" id="pr-o2" min="1" max="40" step="1" value="21">
+                    <span class="slider-val" id="pr-o2-val">21</span>
+                </label>
+                <label>Leaf temperature (&deg;C)
+                    <input type="range" id="pr-temp" min="10" max="45" step="1" value="25">
+                    <span class="slider-val" id="pr-temp-val">25</span>
+                </label>
+                <label>PPFD (&mu;mol/m&sup2;/s)
+                    <input type="range" id="pr-ppfd" min="200" max="2000" step="50" value="1500">
+                    <span class="slider-val" id="pr-ppfd-val">1500</span>
+                </label>
+                <label class="cb-label"><input type="checkbox" id="pr-show-ref" checked> Show 21% O&#8322; reference curve</label>
+            </div>
+            <div class="plot-area">
+                <div id="plot-pr" class="plot"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- TAB 7: C3 / C4 / CAM -->
+    <!-- ============================================================ -->
+    <section id="mechanisms" class="panel">
+        <div class="panel-intro">
+            <h2>Photosynthetic Mechanisms: C3, C4, and CAM</h2>
+            <p>C3 plants fix CO&#8322; directly via Rubisco. C4 plants use a CO&#8322;-concentrating mechanism (PEP carboxylase) to boost Rubisco efficiency. CAM plants open stomata at night to store CO&#8322; as malic acid, then fix it during the day with closed stomata to save water.</p>
+        </div>
+        <div class="panel-body">
+            <div class="controls">
+                <div class="key-insight">
+                    <strong>Key Insight</strong>
+                    <p><strong>C3</strong> (lettuce, wheat, rice): efficient at cool temps, low light. <strong>C4</strong> (corn, sugarcane): dominant at high temps, high light &mdash; virtually no photorespiration. <strong>CAM</strong> (pineapple, cacti): extreme water conservation at the cost of slow growth.</p>
+                </div>
+                <h3>Compare response</h3>
+                <div class="pill-group">
+                    <button class="pill active" data-view="mech-light">Light Response</button>
+                    <button class="pill" data-view="mech-co2">CO&#8322; Response</button>
+                    <button class="pill" data-view="mech-temp">Temperature</button>
+                    <button class="pill" data-view="mech-diurnal">CAM Diurnal</button>
+                </div>
+                <label class="cb-label"><input type="checkbox" id="mech-c3" checked> <span class="cb-swatch" style="background:#2d6a4f"></span> C3 Plant</label>
+                <label class="cb-label"><input type="checkbox" id="mech-c4" checked> <span class="cb-swatch" style="background:#e76f51"></span> C4 Plant</label>
+                <label class="cb-label"><input type="checkbox" id="mech-cam" checked> <span class="cb-swatch" style="background:#264653"></span> CAM Plant</label>
+            </div>
+            <div class="plot-area">
+                <div id="plot-mech" class="plot"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- TAB 8: SOURCE-SINK -->
+    <!-- ============================================================ -->
+    <section id="source-sink" class="panel">
+        <div class="panel-intro">
+            <h2>Source&ndash;Sink Relationships &amp; Carbon Partitioning</h2>
+            <p><strong>Sources</strong> are organs that export carbohydrate (mature leaves producing more sugar than they need). <strong>Sinks</strong> are organs that import carbohydrate (roots, fruits, seeds, growing tips, young leaves). Carbon partitioning &mdash; how the plant distributes its photosynthetic products &mdash; changes with development stage <em>and</em> carbon availability.</p>
+        </div>
+        <div class="panel-body">
+            <div class="controls">
+                <div class="key-insight">
+                    <strong>Key Insight</strong>
+                    <p>Under carbon limitation, plants prioritize survival (roots, leaves) over reproduction (fruit). Below a minimum carbon threshold, fruit set fails entirely. Growers manipulate this: <strong>pruning</strong> directs carbon to remaining fruits; <strong>removing flowers early</strong> builds root reserves; <strong>fruit thinning</strong> increases individual fruit size; <strong>CO&#8322; enrichment</strong> boosts source strength.</p>
+                </div>
+                <label>Crop type
+                    <select id="ss-crop">
+                        <option value="lettuce">Lettuce (leafy)</option>
+                        <option value="tomato" selected>Tomato (fruiting)</option>
+                        <option value="strawberry">Strawberry (fruiting)</option>
+                    </select>
+                </label>
+                <label>Daily photosynthesis (g CH&#8322;O/m&sup2;/d)
+                    <input type="range" id="ss-photo" min="5" max="60" step="1" value="30">
+                    <span class="slider-val" id="ss-photo-val">30</span>
+                </label>
+                <label>Growth day (days after transplant)
+                    <input type="range" id="ss-day" min="1" max="200" step="1" value="80">
+                    <span class="slider-val" id="ss-day-val">80</span>
+                </label>
+            </div>
+            <div class="plot-area two-plots">
+                <div id="plot-ss-time" class="plot-half"></div>
+                <div id="plot-ss-pie" class="plot-half"></div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <p>Photosynthesis Explorer &mdash; Educational tool for CEA coursework &mdash; Cal Poly Pomona</p>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
