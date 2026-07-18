@@ -3,8 +3,24 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Sustainable Ag Systems Lab · Eshwar Ravishankar · Cal Poly Pomona</title>
-<meta name="description" content="The Sustainable Ag Systems Lab at Cal Poly Pomona, led by Dr. Eshwar Ravishankar, grows food and energy from the same sunlight: agrivoltaics, solar-powered greenhouses, controlled-environment agriculture, and precision remote sensing." />
+<title>CIRCAS Lab · Crop Intelligence &amp; Research for Climate-smart Agricultural Systems · Cal Poly Pomona</title>
+<meta name="description" content="CIRCAS Lab at Cal Poly Pomona, led by Dr. Eshwar Ravishankar: Crop Intelligence & Research for Climate-smart Agricultural Systems. Agrivoltaics, controlled-environment agriculture, sensors, machine learning, and decision tools." />
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/logo/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="192x192" href="assets/img/logo/favicon-192.png" />
+<link rel="apple-touch-icon" href="assets/img/logo/apple-touch-icon.png" />
+<meta name="theme-color" content="#08170F" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="CIRCAS Lab" />
+<meta property="og:title" content="CIRCAS Lab · Dr. Eshwar Ravishankar · Cal Poly Pomona" />
+<meta property="og:description" content="Crop Intelligence & Research for Climate-smart Agricultural Systems: agrivoltaics, controlled-environment agriculture, sensors, and machine learning." />
+<meta property="og:url" content="https://circaslab.com/" />
+<meta property="og:image" content="https://circaslab.com/assets/img/logo/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="CIRCAS Lab · Cal Poly Pomona" />
+<meta name="twitter:description" content="Crop Intelligence & Research for Climate-smart Agricultural Systems." />
+<meta name="twitter:image" content="https://circaslab.com/assets/img/logo/og-image.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
@@ -66,7 +82,10 @@ header.nav{
 }
 .nav-inner{display:flex;align-items:center;justify-content:space-between;height:66px}
 .brand{display:flex;align-items:center;gap:.7rem;font-family:var(--ff-display);font-weight:700;font-size:16px;letter-spacing:-.01em}
-.brand .mark{width:26px;height:26px;flex:0 0 auto}
+.brand .mark{width:30px;height:30px;flex:0 0 auto}
+img.mark{object-fit:contain}
+.acronym-line{font-size:clamp(15px,1.9vw,19px);color:var(--stone);max-width:54ch;margin:2px 0 20px;line-height:1.55;font-weight:500}
+.acronym-line .ini{color:var(--solar);font-weight:800;font-size:1.06em}
 .nav-links{display:flex;gap:30px;align-items:center}
 .nav-links a{font-size:14.5px;color:var(--stone);font-weight:500;transition:color .2s}
 .nav-links a:hover{color:var(--mist)}
@@ -447,7 +466,7 @@ header.nav.scrolled{background:rgba(8,23,15,.9);box-shadow:0 8px 30px -14px rgba
 
 <header class="nav">
   <div class="wrap nav-inner">
-    <a class="brand" href="#top"><svg class="mark"><use href="#mark"/></svg> Sustainable Ag Systems Lab</a>
+    <a class="brand" href="#top"><img class="mark" src="assets/img/logo/circas-mark.png" alt="CIRCAS Lab logo" width="30" height="30"/> CIRCAS Lab</a>
     <nav class="nav-links" id="navlinks">
       <a href="#about">About</a>
       <a href="#research">Research</a>
@@ -472,9 +491,10 @@ header.nav.scrolled{background:rgba(8,23,15,.9);box-shadow:0 8px 30px -14px rgba
   <div class="aurora" aria-hidden="true"><b class="a1"></b><b class="a2"></b><b class="a3"></b></div>
   <div class="wrap hero-grid">
     <div>
-      <span class="eyebrow">Cal Poly Pomona · Plant Science</span>
+      <span class="eyebrow">CIRCAS Lab · Cal Poly Pomona</span>
       <h1 class="hero-h1"><span class="w" style="animation-delay:.05s">Growing</span> <span class="w g" style="animation-delay:.13s">food</span> <span class="w" style="animation-delay:.21s">and</span> <span class="w y" style="animation-delay:.29s">energy</span> <span class="w" style="animation-delay:.37s">from</span> <span class="w" style="animation-delay:.45s">the</span> <span class="w" style="animation-delay:.53s">same</span> <span class="w grad" style="animation-delay:.61s">sunlight.</span></h1>
-      <p class="hero-sub">The Sustainable Ag Systems Lab designs agrivoltaic and controlled-environment systems where crops and clean power share one beam of light, engineered, sensed, and modeled from the panel down to the leaf.</p>
+      <p class="acronym-line"><span class="ini">C</span>rop <span class="ini">I</span>ntelligence &amp; <span class="ini">R</span>esearch for <span class="ini">C</span>limate-smart <span class="ini">A</span>gricultural <span class="ini">S</span>ystems</p>
+      <p class="hero-sub">CIRCAS designs agrivoltaic and controlled-environment systems where crops and clean power share one beam of light, engineered, sensed, and modeled from the panel down to the leaf.</p>
       <div class="hero-cta">
         <a class="btn btn-primary" href="#research">Explore the research →</a>
         <a class="btn btn-ghost" href="#join">Work with us</a>
@@ -1074,7 +1094,7 @@ header.nav.scrolled{background:rgba(8,23,15,.9);box-shadow:0 8px 30px -14px rgba
       <div class="nitem"><div class="nd">2026</div><div class="nb"><span class="ntag paper">Paper</span>Collaboration with the University of Georgia published in <strong>Agronomy</strong>, showing agrivoltaic high tunnels can power themselves and still hold crop yield in a subtropical climate. <a href="https://doi.org/10.3390/agronomy16131299" target="_blank" rel="noopener" style="color:var(--leaf)">Read it →</a></div></div>
       <div class="nitem"><div class="nd">2025</div><div class="nb"><span class="ntag press">Press</span>Cal Poly Pomona spotlights the <strong>Spadra Farm agrivoltaic project</strong>: romaine lettuce grown beneath solar panels in what's believed to be Southern California's first commercial agrivoltaic system. <a href="https://www.cpp.edu/agri/news/2025-agrivoltaics.shtml" target="_blank" rel="noopener" style="color:var(--leaf)">Read the story →</a></div></div>
       <div class="nitem"><div class="nd">2025</div><div class="nb"><span class="ntag paper">Paper</span>Preprint released: <strong>Economic Potential of Open-Field Agrivoltaics with Planar Spectral Beam Splitting</strong>, with collaborators in Israel.</div></div>
-      <div class="nitem"><div class="nd">2023</div><div class="nb"><span class="ntag milestone">Milestone</span>Launched the <strong>Sustainable Ag Systems Lab</strong> at Cal Poly Pomona and was named a <strong>CEMaST Faculty Scholar</strong>.</div></div>
+      <div class="nitem"><div class="nd">2023</div><div class="nb"><span class="ntag milestone">Milestone</span>Launched the lab (now <strong>CIRCAS Lab</strong>) at Cal Poly Pomona and was named a <strong>CEMaST Faculty Scholar</strong>.</div></div>
       <div class="nitem"><div class="nd">2023</div><div class="nb"><span class="ntag paper">Paper</span>Genomic analysis of crops grown under semitransparent organic solar cells published in <strong>Frontiers in Plant Science</strong>.</div></div>
       <div class="nitem"><div class="nd">2022</div><div class="nb"><span class="ntag paper">Paper</span>Global techno-economic study of solar-powered greenhouses published in <strong>Energy &amp; Environmental Science</strong>.</div></div>
       <div class="nitem"><div class="nd">2020</div><div class="nb"><span class="ntag paper">Paper</span>The net-zero-energy greenhouse concept published in <strong>Joule</strong>.</div></div>
@@ -1106,7 +1126,7 @@ header.nav.scrolled{background:rgba(8,23,15,.9);box-shadow:0 8px 30px -14px rgba
   <div class="wrap">
     <div class="foot-grid">
       <div>
-        <div class="foot-brand"><svg class="mark"><use href="#mark"/></svg> Sustainable Ag Systems Lab</div>
+        <div class="foot-brand"><img class="mark" src="assets/img/logo/circas-mark.png" alt="CIRCAS Lab logo" width="28" height="28"/> CIRCAS Lab</div>
         <p>Engineering the systems where food and clean energy grow from the same sunlight.</p>
       </div>
       <div>
