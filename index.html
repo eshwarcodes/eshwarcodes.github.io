@@ -253,6 +253,9 @@ img.mark{object-fit:contain}
 .venue.mid{background:rgba(53,197,106,.16);color:var(--leaf-soft);border:1px solid var(--line-strong)}
 .venue.std{border:1px solid var(--line);color:var(--stone)}
 @media(max-width:720px){.pub{grid-template-columns:auto 1fr;gap:8px 18px}.venue{grid-column:2;justify-self:start;margin-top:6px}}
+.pub-sub{margin:48px 0 4px}
+.grad-list{margin-top:8px;max-width:880px}
+.grad-list .yr{min-width:78px}
 
 /* ============ FUNDING ============ */
 .fund-top{display:flex;gap:22px;flex-wrap:wrap;margin-bottom:40px}
@@ -266,6 +269,14 @@ img.mark{object-fit:contain}
 .grant .gr{font-family:var(--ff-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;
   padding:5px 11px;border-radius:999px;border:1px solid var(--line-strong);color:var(--leaf-soft);white-space:nowrap}
 .grant .gr.rev{color:var(--solar);border-color:rgba(255,193,43,.4)}
+.more-grants{margin-top:26px;border-top:1px solid var(--line)}
+.more-grants summary{cursor:pointer;list-style:none;padding:20px 0 16px;font-family:var(--ff-mono);font-size:11.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--leaf-soft);display:flex;align-items:center;gap:10px}
+.more-grants summary::-webkit-details-marker{display:none}
+.more-grants summary::before{content:"+";font-size:16px;line-height:1;color:var(--solar);width:14px}
+.more-grants[open] summary::before{content:"−"}
+.more-grants summary:hover{color:var(--mist)}
+@media(max-width:640px){.grant{grid-template-columns:1fr;gap:10px}.grant .gr{justify-self:start}}
 
 /* ============ TEACHING ============ */
 .tgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(258px,1fr));gap:20px}
@@ -376,6 +387,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 48px;margin-top:8px}
 .ntag.paper{background:rgba(53,197,106,.16);color:var(--leaf-soft);border:1px solid var(--line-strong)}
 .ntag.grant{background:var(--solar);color:var(--canopy)}
 .ntag.milestone{border:1px solid var(--line-strong);color:var(--stone)}
+.ntag.award{border:1px solid rgba(255,193,43,.4);color:var(--solar)}
 .ntag.press{background:rgba(255,107,53,.16);color:var(--ember);border:1px solid var(--line-strong)}
 @media(max-width:560px){.nitem{grid-template-columns:1fr;gap:6px}}
 
@@ -416,6 +428,15 @@ footer{border-top:1px solid var(--line);padding:64px 0 48px;margin-top:8px}
 .talk-a .pres{color:var(--solar);font-weight:500}
 .talk-when{display:block;margin-top:7px;font-family:var(--ff-mono);font-size:11px;color:var(--solar);letter-spacing:.02em;line-height:1.5}
 .talk-when .sess{display:block;color:var(--stone);font-size:10.5px;margin-top:2px}
+.pstrip{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:auto auto;gap:12px;margin:18px 0 26px}
+.pstrip figure{margin:0;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:var(--canopy-2)}
+.pstrip img{width:100%;height:100%;object-fit:cover;display:block;aspect-ratio:4/3}
+.pstrip .ps-lead{grid-row:span 2}
+.pstrip .ps-lead img{aspect-ratio:auto}
+@media(max-width:720px){.pstrip{grid-template-columns:1fr 1fr}.pstrip .ps-lead{grid-column:span 2;grid-row:auto}.pstrip .ps-lead img{aspect-ratio:4/3}}
+.nthumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px;margin-top:14px}
+.nthumbs img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:10px;border:1px solid var(--line);display:block}
+.nsrc{display:block;margin-top:8px;font-family:var(--ff-mono);font-size:12px;color:var(--stone-dim)}
 @media(max-width:640px){.talk{grid-template-columns:1fr;gap:6px}.conf-badge .cb-count{margin-left:0}.talk-when{margin-top:2px}}
 
 /* ============ SIGNATURE MOTION LAYER ============ */
@@ -542,7 +563,7 @@ header.nav.scrolled{background:rgba(8,23,15,.9);box-shadow:0 8px 30px -14px rgba
       </div>
       <div class="hero-stats">
         <div class="stat"><div class="num y count-up" data-end="7">7</div><div class="lab">Peer-reviewed papers</div></div>
-        <div class="stat"><div class="num g count-up" data-end="348" data-prefix="$" data-suffix="K">$348K</div><div class="lab">Grants awarded</div></div>
+        <div class="stat"><div class="num g count-up" data-end="2.6" data-decimals="1" data-prefix="$" data-suffix="M">$2.6M</div><div class="lab">Competitive awards</div></div>
         <div class="stat"><div class="num">Joule · EES</div><div class="lab">Flagship venues</div></div>
       </div>
     </div>
@@ -574,9 +595,11 @@ header.nav.scrolled{background:rgba(8,23,15,.9);box-shadow:0 8px 30px -14px rgba
       <h2 style="margin-top:16px">Dr. Eshwar Ravishankar</h2>
       <p class="lead">A mechanical engineer who fell for plants, and now builds the systems where the two disciplines meet.</p>
       <p>Trained through a Ph.D. in Mechanical Engineering at NC State, I spent years engineering <strong>semitransparent organic solar cells</strong> that let a greenhouse generate its own electricity while the crops beneath still thrive. That question became my research program: how do you divide one photon budget between a harvest and a kilowatt-hour?</p>
-      <p>Today, as Assistant Professor of Plant Science and a <strong>CEMaST Faculty Scholar</strong> at Cal Poly Pomona, my lab works across agrivoltaics, controlled-environment agriculture, and precision remote sensing. We build real hardware, sensor it heavily, and wrap it in energy–water–plant models that tell growers what to do next.</p>
+      <p>Today, as Assistant Professor of Plant Science, <strong>Graduate Program Coordinator</strong>, and a <strong>CEMaST Faculty Scholar</strong> at Cal Poly Pomona, I direct a lab that works across agrivoltaics, controlled-environment agriculture, and precision remote sensing. We build real hardware, sensor it heavily, and wrap it in energy–water–plant models that tell growers what to do next. In 2026 the Huntley College of Agriculture named me its <strong>Outstanding Faculty Advisor</strong>.</p>
       <ul class="cred-list">
-        <li><span class="yr">2023–</span><span class="d"><strong>Assistant Professor · CEMaST Faculty Scholar</strong><span>Cal Poly Pomona, Dept. of Plant Science</span></span></li>
+        <li><span class="yr">2023–</span><span class="d"><strong>Assistant Professor · Founder &amp; Director, CIRCAS Lab</strong><span>Cal Poly Pomona, Dept. of Plant Science</span></span></li>
+        <li><span class="yr">2025–</span><span class="d"><strong>Graduate Program Coordinator</strong><span>M.S. in Agriculture, Plant Science option · also Horticulture Minor Advisor</span></span></li>
+        <li><span class="yr">2024–</span><span class="d"><strong>CEMaST Faculty Scholar</strong><span>Cal Poly Pomona</span></span></li>
         <li><span class="yr">2021–23</span><span class="d"><strong>Postdoctoral Research Scholar</strong><span>Dept. of Horticultural Science, NC State University</span></span></li>
         <li><span class="yr">2021</span><span class="d"><strong>Ph.D., Mechanical Engineering</strong><span>NC State University</span></span></li>
         <li><span class="yr">2019</span><span class="d"><strong>M.S., Mechanical Engineering</strong><span>NC State University</span></span></li>
@@ -600,8 +623,8 @@ header.nav.scrolled{background:rgba(8,23,15,.9);box-shadow:0 8px 30px -14px rgba
         <div class="rn">01</div>
         <svg class="ric" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="8" width="30" height="16" rx="2"/><path d="M5 16h30M15 8v16M25 8v16"/><path d="M20 24v8M12 32h16"/></svg>
         <h3>Agrivoltaics</h3>
-        <p>Splitting the spectrum between panels and plants: from planar spectral beam-splitters for open-field farms to AI that steers autonomous agrivoltaic arrays through the day.</p>
-        <div class="tags"><span class="tag">spectral beam-splitting</span><span class="tag">open-field PV</span><span class="tag">US–Israel BARD</span></div>
+        <p>Sharing sunlight between panels and plants: from spectral beam-splitters modeled with ray-tracing and crop models, to field-validated co-optimization of solar generation, battery dispatch, and crop production across California.</p>
+        <div class="tags"><span class="tag">spectral beam-splitting</span><span class="tag">field trials</span><span class="tag">CEC EPIC</span></div>
       </article>
       <article class="rcard wide reveal">
         <div class="rn">02</div>
@@ -614,22 +637,22 @@ header.nav.scrolled{background:rgba(8,23,15,.9);box-shadow:0 8px 30px -14px rgba
         <div class="rn">03</div>
         <svg class="ric" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2"><rect x="8" y="6" width="24" height="28" rx="2"/><path d="M14 14h12M14 20h12M14 26h8"/></svg>
         <h3>Controlled-Environment &amp; Vertical Farming</h3>
-        <p>Automated hydroponic and microgreen systems on a custom-built controller: IoT-sensed, energy-aware, and designed for the city.</p>
+        <p>A container vertical farm, a mushroom production room, and automated hydroponic benches on a custom-built controller: IoT-sensed, energy-aware, and designed for the city.</p>
         <div class="tags"><span class="tag">hydroponics</span><span class="tag">custom PCB</span><span class="tag">IoT</span></div>
       </article>
       <article class="rcard reveal">
         <div class="rn">04</div>
         <svg class="ric" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2"><circle cx="20" cy="20" r="6"/><path d="M20 4v6M20 30v6M4 20h6M30 20h6"/><path d="M31 9l-4 4M9 31l4-4M31 31l-4-4M9 9l4 4"/></svg>
         <h3>Remote Sensing &amp; Precision Ag</h3>
-        <p>Drones, GIS, and handheld crop sensors turning strawberry fields and orchards into daily data.</p>
-        <div class="tags"><span class="tag">UAV</span><span class="tag">GIS</span></div>
+        <p>UAV multispectral imaging, GIS, and ground robots turning fields into daily data, including telling panel shade apart from real crop stress.</p>
+        <div class="tags"><span class="tag">UAV</span><span class="tag">multispectral</span><span class="tag">GIS</span></div>
       </article>
       <article class="rcard reveal">
         <div class="rn">05</div>
         <svg class="ric" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 30V10M6 30h28"/><path d="M10 26l7-9 6 5 8-13" /></svg>
         <h3>Energy–Water–Plant Modeling &amp; AI</h3>
-        <p>Physics-based models of photosynthesis, greenhouse climate, and water recovery: the decision layer over every system we build.</p>
-        <div class="tags"><span class="tag">crop modeling</span><span class="tag">optimization</span></div>
+        <p>An eight-crop simulation engine coupling photosynthesis to greenhouse energy and water balances runs a full production year in about ten seconds, with a machine-learning surrogate trained on 168,000 simulations. It is now an open web tool and a Cal Poly Pomona invention disclosure.</p>
+        <div class="tags"><span class="tag">crop modeling</span><span class="tag">ML surrogates</span><span class="tag">water recovery</span></div>
       </article>
     </div>
   </div>
@@ -676,13 +699,13 @@ header.nav.scrolled{background:rgba(8,23,15,.9);box-shadow:0 8px 30px -14px rgba
     <div class="feature-text reveal">
       <span class="eyebrow">Field research · Spadra Farm</span>
       <h2>An agrivoltaic living lab in the field.</h2>
-      <p class="lead">Five elevated monofacial solar arrays over working crop beds, powering the grid while lettuce grows in their shade.</p>
-      <p>At Cal Poly Pomona's Spadra Farm, we run replicated trials of leafy greens beneath tracker-mounted panels, measuring exactly how much yield we trade for how much energy. Flagged plots, drip lines, and drone flights turn the whole array into a dataset: the field counterpart to the spectral beam-splitting work in the lab.</p>
+      <p class="lead">A 12 kW off-grid array of elevated, fixed-tilt solar panels over working crop beds, with romaine lettuce growing in their shade.</p>
+      <p>At Cal Poly Pomona's Spadra Farm, we run replicated romaine trials beneath the panels, comparing regenerative and conventional fertility. Across three crop cycles and 2,805 harvested plants, the panels cost 12–27% of seasonal yield, and regenerative fertility raised absolute yield without closing that shading gap. Flagged plots, drip lines, and drone flights turn the whole array into a dataset. The site is also a study site for the FFAR Seeding Solutions project led by Pitzer College, and the template for our CSU ARI and California Energy Commission work.</p>
       <div class="specs">
         <div class="spec"><div class="sl">Site</div><div class="sv">Spadra Farm, CPP</div></div>
-        <div class="spec"><div class="sl">Array</div><div class="sv">5 elevated monofacial panels</div></div>
-        <div class="spec"><div class="sl">Crops</div><div class="sv">Lettuce &amp; leafy greens</div></div>
-        <div class="spec"><div class="sl">Measured</div><div class="sv">Yield vs. energy trade-off</div></div>
+        <div class="spec"><div class="sl">Array</div><div class="sv">12 kW fixed-tilt, off-grid</div></div>
+        <div class="spec"><div class="sl">Crops</div><div class="sv">Romaine lettuce</div></div>
+        <div class="spec"><div class="sl">Measured</div><div class="sv">Yield, physiology, soil, imagery</div></div>
       </div>
     </div>
     <div class="feature-media reveal">
@@ -700,7 +723,7 @@ header.nav.scrolled{background:rgba(8,23,15,.9);box-shadow:0 8px 30px -14px rgba
       <span class="eyebrow">Controlled environment · Indoor</span>
       <h2>A vertical farm that runs itself.</h2>
       <p class="lead">We build indoor grow systems that sense, decide, and act, down to the milliliter of nutrient.</p>
-      <p>Our controlled-environment platform pairs a <strong>custom-designed Raspberry Pi hydroponic controller board</strong> with an open-source Mycodo stack. It reads pH, EC, CO₂, temperature, and VPD on a 30-second cadence, then drives a phase-gated flood-and-drain cycle, climate control, and automated pH and nutrient dosing: the same framework re-tuned for microgreens, lettuce, and mushrooms. Students use it to run real crop trials and defend theses on the data it logs.</p>
+      <p>Our controlled-environment platform pairs a <strong>custom-designed Raspberry Pi hydroponic controller board</strong> with an open-source Mycodo stack. It reads pH, EC, CO₂, temperature, and VPD on a 30-second cadence, then drives a phase-gated flood-and-drain cycle, climate control, and automated pH and nutrient dosing: the same framework re-tuned for microgreens, lettuce, and mushrooms. Students use it to run real crop trials, and the first M.S. thesis built on it was completed in 2026.</p>
       <div class="specs">
         <div class="spec"><div class="sl">Senses</div><div class="sv">pH · EC · CO₂ · moisture · flow · energy</div></div>
         <div class="spec"><div class="sl">Acts</div><div class="sv">Dosing · pumps · lights · climate</div></div>
@@ -742,22 +765,22 @@ header.nav.scrolled{background:rgba(8,23,15,.9);box-shadow:0 8px 30px -14px rgba
       </div>
       <div class="pub">
         <div class="py">2020</div>
-        <div><p class="pt">Achieving Net-Zero-Energy Greenhouses by Integrating Semitransparent Organic Solar Cells</p><p class="pa"><strong>Ravishankar, E.</strong>, Booth, R.E., Sederoff, H., Ade, H.W., O'Connor, B.T.</p></div>
+        <div><p class="pt">Achieving Net-Zero-Energy Greenhouses by Integrating Semitransparent Organic Solar Cells</p><p class="pa"><strong>Ravishankar, E.</strong>, Booth, R.E., Saravitz, C., Sederoff, H., Ade, H.W., O'Connor, B.T. · <em>Cover feature</em></p></div>
         <span class="venue flag">Joule</span>
       </div>
       <div class="pub">
         <div class="py">2022</div>
-        <div><p class="pt">Organic Solar-Powered Greenhouse Performance Optimization and Global Economic Opportunity</p><p class="pa"><strong>Ravishankar, E.</strong>, et al.</p></div>
+        <div><p class="pt">Organic Solar-Powered Greenhouse Performance Optimization and Global Economic Opportunity</p><p class="pa"><strong>Ravishankar, E.</strong>, Booth, R.E., Hollingsworth, J.A., Ade, H.W., Sederoff, H., DeCarolis, J.F., O'Connor, B.T.</p></div>
         <span class="venue flag">Energy &amp; Environ. Sci.</span>
       </div>
       <div class="pub">
         <div class="py">2021</div>
-        <div><p class="pt">Balancing Crop Production and Energy Harvesting in Organic Solar-Powered Greenhouses</p><p class="pa"><strong>Ravishankar, E.</strong>, Charles, M., Sederoff, H., Ade, H.W., O'Connor, B.T.</p></div>
+        <div><p class="pt">Balancing Crop Production and Energy Harvesting in Organic Solar-Powered Greenhouses</p><p class="pa"><strong>Ravishankar, E.</strong>, Charles, M., Sederoff, H., Ade, H.W., O'Connor, B.T., et al. · <em>Highly Cited Paper</em></p></div>
         <span class="venue mid">Cell Rep. Phys. Sci.</span>
       </div>
       <div class="pub">
         <div class="py">2023</div>
-        <div><p class="pt">Genomic Analysis Reveals Emergent Traits of Crops Grown Under Semitransparent Organic Solar Cells</p><p class="pa">Charles, M., Edwards, B., <strong>Ravishankar, E.</strong>, et al.</p></div>
+        <div><p class="pt">Emergent Molecular Traits of Lettuce and Tomato Grown Under Wavelength-Selective Solar Cells</p><p class="pa">Charles, M., Edwards, B., <strong>Ravishankar, E.</strong>, et al.</p></div>
         <span class="venue mid">Frontiers in Plant Sci.</span>
       </div>
       <div class="pub">
@@ -771,6 +794,25 @@ header.nav.scrolled{background:rgba(8,23,15,.9);box-shadow:0 8px 30px -14px rgba
         <span class="venue std">Preprint</span>
       </div>
     </div>
+
+    <div class="reveal">
+      <div class="thanks-h pub-sub">Under review · student first authors</div>
+      <div class="pub">
+        <div class="py">2026</div>
+        <div><p class="pt">When the Controller Becomes the Predictor: Lessons from Machine Learning in Hydroponic Lettuce</p><p class="pa">Gutierrez, G., Mattia, S., Kosaraju, S.C., <strong>Ravishankar, E.</strong></p></div>
+        <span class="venue std">IEEE SCSETech</span>
+      </div>
+      <div class="pub">
+        <div class="py">2026</div>
+        <div><p class="pt">Machine Learning Identifies Non-Destructive Indicators of Crop Response to Agrivoltaic Shading</p><p class="pa">Imtiaz, A., Kelly, M., Kuhn, E., Phillips, S., Fox, A., Olivas, R., Kosaraju, S.C., <strong>Ravishankar, E.</strong></p></div>
+        <span class="venue std">IEEE SCSETech</span>
+      </div>
+      <div class="pub">
+        <div class="py">2026</div>
+        <div><p class="pt">From Agricultural Machine Learning to Field Decisions: Interpretable Rules, Sensor Requirements, and Failure Modes</p><p class="pa">Cao, J., Green, C., Corrales, L., Le, N., <strong>Ravishankar, E.</strong>, Kosaraju, S.C.</p></div>
+        <span class="venue std">IEEE SCSETech</span>
+      </div>
+    </div>
   </div>
 </section>
 <hr class="spectrum-rule" />
@@ -780,83 +822,194 @@ header.nav.scrolled{background:rgba(8,23,15,.9);box-shadow:0 8px 30px -14px rgba
   <div class="wrap">
     <div class="band-head reveal">
       <span class="eyebrow">Speaking engagements</span>
-      <h2>Catch the lab at ASHS 2026.</h2>
-      <p>The lab is bringing seven oral presentations to the American Society for Horticultural Science Annual Conference, led by our graduate and undergraduate researchers. If you'll be there, come talk agrivoltaics, controlled-environment ag, and machine learning with us.</p>
+      <h2>Where the lab has been speaking.</h2>
+      <p>In August 2026 our graduate and undergraduate researchers gave eight oral presentations at the American Society for Horticultural Science Annual Conference, across agrivoltaics, controlled-environment ag, and machine learning. Want us at your event? Get in touch.</p>
     </div>
     <div class="conf-badge reveal">
       <span class="cb-name">ASHS Annual Conference 2026</span>
       <span class="cb-meta">Hyatt Regency Dallas, TX · August 3–7, 2026</span>
-      <span class="cb-count">7 oral talks</span>
+      <span class="cb-count">8 talks presented</span>
+    </div>
+    <div class="pstrip reveal">
+      <figure class="ps-lead"><img src="assets/img/events/ashs-2026-team.jpg" alt="CIRCAS Lab researchers posing under the ASHS 2026 arch in Dallas" loading="lazy"/></figure>
+      <figure><img src="assets/img/events/ashs-2026-imtiaz.jpg" alt="Areesha Imtiaz presenting on classifying shading effects on agrivoltaic lettuce growth" loading="lazy"/></figure>
+      <figure><img src="assets/img/events/ashs-2026-soil.jpg" alt="Areesha Imtiaz presenting soil fungal community changes under agrivoltaic panels" loading="lazy"/></figure>
+      <figure><img src="assets/img/events/ashs-2026-gutierrez.jpg" alt="Gerardo Gutierrez presenting the Raspberry Pi lettuce growth tent system" loading="lazy"/></figure>
+      <figure><img src="assets/img/events/ashs-2026-ml-session.jpg" alt="A lab student presenting machine-learning results in the Technology Applications in Horticulture session" loading="lazy"/></figure>
     </div>
     <div class="talks reveal">
       <div class="talk">
         <div class="talk-left">
           <div class="talk-topic">Machine Learning</div>
-          <span class="talk-when">Tue · Aug 4 · 1:00 PM<span class="sess">Technology Applications in Horticulture #1</span></span>
+          <span class="talk-when">Technology Applications in Horticulture #1</span>
         </div>
         <div class="talk-body">
           <p class="talk-t">Interpretable Support Vector Machine Modeling Identifies Environmental–Physiological Disease Transition Zones in Tomato</p>
-          <p class="talk-a"><span class="pres">Carson Green</span> presenting · with Corrales, Mattia, Kosaraju &amp; Ravishankar</p>
+          <p class="talk-a"><span class="pres">Carson Green</span> presented · with Corrales, Mattia, Ravishankar &amp; Kosaraju</p>
         </div>
       </div>
       <div class="talk">
         <div class="talk-left">
           <div class="talk-topic">Machine Learning</div>
-          <span class="talk-when">Tue · Aug 4 · 1:30 PM<span class="sess">Technology Applications in Horticulture #1</span></span>
+          <span class="talk-when">Technology Applications in Horticulture #1</span>
         </div>
         <div class="talk-body">
           <p class="talk-t">Machine Learning-Based Crop Recommendation Using Environmental and Edaphic Variables: A Comparative Analysis of Random Forest, SVM, and Neural Network Classifiers</p>
-          <p class="talk-a"><span class="pres">Sai Chandra Kosaraju</span> presenting · with Cao, Le, Green, Mattia &amp; Ravishankar</p>
+          <p class="talk-a"><span class="pres">Joshua Cao</span> presented · with Le, Green, Mattia, Ravishankar &amp; Kosaraju</p>
         </div>
       </div>
       <div class="talk">
         <div class="talk-left">
           <div class="talk-topic">Machine Learning</div>
-          <span class="talk-when">Tue · Aug 4 · 1:45 PM<span class="sess">Technology Applications in Horticulture #1</span></span>
+          <span class="talk-when">Technology Applications in Horticulture #1</span>
         </div>
         <div class="talk-body">
           <p class="talk-t">Evaluating the Predictive Limits of Environmental Variables for Plant Disease Detection and Health Monitoring Using Machine Learning</p>
-          <p class="talk-a"><span class="pres">Sai Chandra Kosaraju</span> presenting · with Le, Cao, Corrales, Green, Mattia &amp; Ravishankar</p>
+          <p class="talk-a"><span class="pres">Nikki Le</span> presented · with Cao, Corrales, Green, Mattia, Ravishankar &amp; Kosaraju</p>
+        </div>
+      </div>
+      <div class="talk">
+        <div class="talk-left">
+          <div class="talk-topic">Machine Learning</div>
+          <span class="talk-when">Undergraduate research</span>
+        </div>
+        <div class="talk-body">
+          <p class="talk-t">Nonlinear Machine Learning Reveals Temperature Thresholds in Rice Yield</p>
+          <p class="talk-a"><span class="pres">Joshua Cao</span> presented · advised by Ravishankar</p>
         </div>
       </div>
       <div class="talk">
         <div class="talk-left">
           <div class="talk-topic">Agrivoltaics</div>
-          <span class="talk-when">Wed · Aug 5 · 10:45 AM<span class="sess">Vegetable Crops Management #2</span></span>
+          <span class="talk-when">Vegetable Crops Management #2</span>
         </div>
         <div class="talk-body">
           <p class="talk-t">Seasonal Yield and Physiological Response of Romaine Lettuce Under Fixed-Tilt Agrivoltaics in a Semi-Arid System</p>
-          <p class="talk-a"><span class="pres">Megan Kelly</span> presenting · with Kuhn, Connelly, Campbell Freire, Duong, Briceno, Fox, Cesena Olivas &amp; Ravishankar</p>
+          <p class="talk-a"><span class="pres">Megan Kelly</span> presented · with Kuhn, Connelly, Campbell Freire, Duong, Briceno, Fox, Cesena Olivas &amp; Ravishankar</p>
         </div>
       </div>
       <div class="talk">
         <div class="talk-left">
           <div class="talk-topic">Agrivoltaics · ML</div>
-          <span class="talk-when">Wed · Aug 5 · 11:30 AM<span class="sess">Undergraduate Oral Session 1</span></span>
+          <span class="talk-when">Undergraduate Oral Session 1</span>
         </div>
         <div class="talk-body">
           <p class="talk-t">Beyond Mean Yield: Machine Learning Reveals Within-Plot Uniformity as a Key Classifier of Agrivoltaic Lettuce Production</p>
-          <p class="talk-a"><span class="pres">Areesha Imtiaz</span> presenting · with Kelly, Kuhn, Connelly, Campbell Freire, Duong, Briceno, Fox, Cesena Olivas, Kosaraju &amp; Ravishankar</p>
+          <p class="talk-a"><span class="pres">Areesha Imtiaz</span> presented · with Kelly, Kuhn, Connelly, Campbell Freire, Duong, Briceno, Fox, Cesena Olivas, Kosaraju &amp; Ravishankar</p>
         </div>
       </div>
       <div class="talk">
         <div class="talk-left">
           <div class="talk-topic">Agrivoltaics · Soil Microbiome</div>
-          <span class="talk-when">Wed · Aug 5 · 11:45 AM<span class="sess">Undergraduate Oral Session 1</span></span>
+          <span class="talk-when">Undergraduate Oral Session 1</span>
         </div>
         <div class="talk-body">
           <p class="talk-t">Fixed-Tilt Agrivoltaic Panels Restructure Soil Fungal Communities and Enrich Plant-Pathogenic Genera in a Semi-Arid Romaine Lettuce System</p>
-          <p class="talk-a"><span class="pres">Areesha Imtiaz</span> presenting · with Kelly, Kuhn, Connelly, Campbell Freire, Duong, Briceno, Fox, Cesena Olivas &amp; Kosaraju</p>
+          <p class="talk-a"><span class="pres">Areesha Imtiaz</span> presented · with Kelly, Kuhn, Connelly, Campbell Freire, Duong, Briceno, Fox, Cesena Olivas &amp; Kosaraju</p>
         </div>
       </div>
       <div class="talk">
         <div class="talk-left">
           <div class="talk-topic">Controlled-Environment Ag</div>
-          <span class="talk-when">Wed · Aug 5 · 1:00 PM<span class="sess">Undergraduate Oral Session 1</span></span>
+          <span class="talk-when">Undergraduate Oral Session 1</span>
         </div>
         <div class="talk-body">
           <p class="talk-t">Integrating Low-Cost Adaptive Nutrient Control with Time-Series Modeling to Improve Growth Prediction and Resource Efficiency in Indoor and Greenhouse Lettuce Production</p>
-          <p class="talk-a"><span class="pres">Gerardo Gutierrez</span> presenting · with Mattia, Kosaraju &amp; Ravishankar</p>
+          <p class="talk-a"><span class="pres">Gerardo Gutierrez</span> presented · with Mattia, Kosaraju &amp; Ravishankar</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="thanks-h pub-sub reveal">Invited talks &amp; lectures</div>
+    <div class="talks reveal">
+      <div class="talk">
+        <div class="talk-left">
+          <div class="talk-topic">Invited talk</div>
+          <span class="talk-when">2026</span>
+        </div>
+        <div class="talk-body">
+          <p class="talk-t">Vertical Farming Show</p>
+          <p class="talk-a">Orange County, CA</p>
+        </div>
+      </div>
+      <div class="talk">
+        <div class="talk-left">
+          <div class="talk-topic">Invited lecture</div>
+          <span class="talk-when">2025</span>
+        </div>
+        <div class="talk-body">
+          <p class="talk-t">Smart Agriculture Summer Camp, Wayne State University</p>
+          <p class="talk-a">Recorded talk for a USDA-funded high-school program: from Raspberry Pi sensor builds to a full-scale container farm</p>
+        </div>
+      </div>
+      <div class="talk">
+        <div class="talk-left">
+          <div class="talk-topic">Guest lecture</div>
+          <span class="talk-when">2025</span>
+        </div>
+        <div class="talk-body">
+          <p class="talk-t">Mt. San Antonio College</p>
+          <p class="talk-a">Next generation greenhouses can be fully solar powered</p>
+        </div>
+      </div>
+      <div class="talk">
+        <div class="talk-left">
+          <div class="talk-topic">Guest lecture</div>
+          <span class="talk-when">2025</span>
+        </div>
+        <div class="talk-body">
+          <p class="talk-t">Orange County Rare Fruit Growers</p>
+          <p class="talk-a">Lecture and demonstration</p>
+        </div>
+      </div>
+      <div class="talk">
+        <div class="talk-left">
+          <div class="talk-topic">Invited talk</div>
+          <span class="talk-when">2024</span>
+        </div>
+        <div class="talk-body">
+          <p class="talk-t">CEAg World Conference</p>
+          <p class="talk-a">Raleigh, NC · Using predictive planning systems and environmental data to predict yield and energy in controlled-environment agriculture</p>
+        </div>
+      </div>
+      <div class="talk">
+        <div class="talk-left">
+          <div class="talk-topic">Invited talk</div>
+          <span class="talk-when">2024</span>
+        </div>
+        <div class="talk-body">
+          <p class="talk-t">Plant Science Initiative, NC State University</p>
+          <p class="talk-a">Raleigh, NC</p>
+        </div>
+      </div>
+      <div class="talk">
+        <div class="talk-left">
+          <div class="talk-topic">Contributed talk</div>
+          <span class="talk-when">2024</span>
+        </div>
+        <div class="talk-body">
+          <p class="talk-t">AgriVoltaics World Conference</p>
+          <p class="talk-a">Denver, CO</p>
+        </div>
+      </div>
+      <div class="talk">
+        <div class="talk-left">
+          <div class="talk-topic">Contributed talk</div>
+          <span class="talk-when">2024</span>
+        </div>
+        <div class="talk-body">
+          <p class="talk-t">ASHS Annual Conference</p>
+          <p class="talk-a">Honolulu, HI</p>
+        </div>
+      </div>
+      <div class="talk">
+        <div class="talk-left">
+          <div class="talk-topic">Panel</div>
+          <span class="talk-when">2024</span>
+        </div>
+        <div class="talk-body">
+          <p class="talk-t">National Adaptation Forum</p>
+          <p class="talk-a">St. Paul, MN</p>
         </div>
       </div>
     </div>
@@ -870,35 +1023,60 @@ header.nav.scrolled{background:rgba(8,23,15,.9);box-shadow:0 8px 30px -14px rgba
     <div class="band-head reveal">
       <span class="eyebrow">Funding &amp; grants</span>
       <h2>Backed to build real systems.</h2>
+      <p>Since 2023: 23 competitive awards, 15 as Principal Investigator, led by a $2.1M California Energy Commission award to scale agrivoltaics across California.</p>
     </div>
     <div class="fund-top reveal">
-      <div class="fchip"><div class="fn">$348K</div><div class="fl">Funding awarded</div></div>
-      <div class="fchip"><div class="fn">$210K</div><div class="fl">As Principal Investigator</div></div>
-      <div class="fchip"><div class="fn">11</div><div class="fl">Funded grants &amp; awards</div></div>
+      <div class="fchip"><div class="fn">$2.59M</div><div class="fl">Competitive awards</div></div>
+      <div class="fchip"><div class="fn">$2.37M</div><div class="fl">As Principal Investigator</div></div>
+      <div class="fchip"><div class="fn">23</div><div class="fl">Awards · 15 as PI</div></div>
     </div>
+    <div class="thanks-h reveal">Research awards · $2.48M</div>
     <div class="grants reveal">
-      <div class="grant"><div><div class="gt">Development of Low-Cost Unmanned Aerial &amp; Ground Vehicle Platforms for Precision Farming</div><div class="gm">Agricultural Research Institute (ARI) · Co-PI · 2024–26 · #25-04-669</div></div><span class="gr">$122K · Funded</span></div>
-      <div class="grant"><div><div class="gt">Field-Validated Agrivoltaic Decision Support for Southern California Specialty Crop Systems</div><div class="gm">ARI Campus Grant, Cal Poly Pomona · PI · FY2026–27 · #27-04-108</div></div><span class="gr">$100K · Funded</span></div>
-      <div class="grant"><div><div class="gt">Upgrading the Plant Science Lab with a New Gas-Exchange Measurement System</div><div class="gm">CPP SPICE · Equipment Modernization · PI · 2025</div></div><span class="gr">$24K · Funded</span></div>
-      <div class="grant"><div><div class="gt">IntelliGrow-AI: An AI-Driven Decision-Support Platform for California Nursery &amp; Greenhouse Production</div><div class="gm">Plant California Alliance / CANERS Foundation · PI · 2026</div></div><span class="gr">$20K · Funded</span></div>
-      <div class="grant"><div><div class="gt">Next-Gen Mycology: Integrating AI, IoT, and Biotechnology for Sustainable Fungal Production</div><div class="gm">CPP SPICE · Innovative Instruction · PI · 2025</div></div><span class="gr">$17K · Funded</span></div>
-      <div class="grant"><div><div class="gt">Running RO Like a Cyclic Engine: Maximizing Water Recovery and Efficiency for Urban Farming</div><div class="gm">CPP Strategic Interdisciplinary Research Grant · Co-PI · 2024</div></div><span class="gr">$15K · Funded</span></div>
-      <div class="grant"><div><div class="gt">Model-Based Decision-Making Tool for Controlled-Environment Agriculture</div><div class="gm">NC State CEA Center · sub-award · PI · 2024–25</div></div><span class="gr">$13K · Funded</span></div>
-      <div class="grant"><div><div class="gt">Cultivating Tomorrow's Workforce: Undergraduate Classroom Learning in Precision Farming</div><div class="gm">CPP SPICE · Innovative Instruction · PI · 2024</div></div><span class="gr">$10K · Funded</span></div>
-      <div class="grant"><div><div class="gt">Enabling Energy-Resilient California Greenhouses via Crop-Coupled Semitransparent Organic PV</div><div class="gm">ARI Seed Grant, Cal Poly Pomona · PI · FY2026–27 · #27-04-119</div></div><span class="gr">$10K · Funded</span></div>
-      <div class="grant"><div><div class="gt">Innovative Cultivation Solutions: An Automated Hydroponic System for Vertical Microgreens</div><div class="gm">RSCA, Cal Poly Pomona · PI · 2024</div></div><span class="gr">$10K · Funded</span></div>
-      <div class="grant"><div><div class="gt">Cal Poly Pomona Freight Farm Produce-Sourcing Partnership</div><div class="gm">Partnership for Growth LA / Freedom Farms · Project lead · 2026</div></div><span class="gr">$7K · Funded</span></div>
+      <div class="grant"><div><div class="gt">Scalable Agrivoltaics in California: Field-Validated Co-Optimization of Solar Generation, Battery Dispatch, and Crop Production</div><div class="gm">California Energy Commission · EPIC GFO-25-306 · PI · 2026– · ranked 2nd of 19 proposals</div></div><span class="gr">$2.1M · Funded</span></div>
+      <div class="grant"><div><div class="gt">Development of Low-Cost Unmanned Aerial &amp; Ground Vehicle Platforms for Precision Farming</div><div class="gm">CSU Agricultural Research Institute (ARI) · Co-PI (PI: S. Bhandari) · 2024–26 · #25-04-669</div></div><span class="gr">$122K · Funded</span></div>
+      <div class="grant"><div><div class="gt">Field-Validated Agrivoltaic Decision Support for Southern California Specialty-Crop Systems</div><div class="gm">CSU Agricultural Research Institute (ARI) · PI · 2026–27 · #27-04-108</div></div><span class="gr">$100K · Funded</span></div>
+      <div class="grant"><div><div class="gt">Cellulose-Based Hydrogels for Solar-Powered Atmospheric Water Harvesting</div><div class="gm">A.I. Innovation, N.V. (industry) · Co-PI (PI: S. Li) · 2025</div></div><span class="gr">$50K · Funded</span></div>
+      <div class="grant"><div><div class="gt">Dean's Probationary Faculty Matching Fund, matched to the ARI precision-farming award</div><div class="gm">Huntley College of Agriculture · PI · 2025</div></div><span class="gr">$45K · Funded</span></div>
+      <div class="grant"><div><div class="gt">IntelliGrow-AI: A Grower-Friendly Decision-Support Tool to Reduce Water, Energy, and Labor Costs in California Nursery Greenhouses</div><div class="gm">CANERS Foundation · PI · 2026–27</div></div><span class="gr">$20K · Funded</span></div>
+      <div class="grant"><div><div class="gt">Running RO Like a Cyclic Engine: Maximizing Water Recovery for Urban Farming</div><div class="gm">CPP Strategic Interdisciplinary Research Grant · Co-PI (PI: M. Li) · 2024</div></div><span class="gr">$15K · Funded</span></div>
+      <div class="grant"><div><div class="gt">Model-Based Decision-Making Tool for Vertical-Farm System Design and Analysis</div><div class="gm">NC State Controlled Environment Agriculture Coalition · sub-award · PI · 2024</div></div><span class="gr">$13K · Funded</span></div>
+      <div class="grant"><div><div class="gt">Enabling Energy-Resilient California Greenhouses via Crop-Coupled Semitransparent Organic PV (seed grant)</div><div class="gm">CSU Agricultural Research Institute (ARI) · PI · 2026–27 · #27-04-119</div></div><span class="gr">$10K · Funded</span></div>
+      <div class="grant"><div><div class="gt">Sustainable Vertical Farming: Leafy-Green Production</div><div class="gm">Partnership for Growth LA / Freedom Farms · PI · 2025–26</div></div><span class="gr">$7K · Funded</span></div>
     </div>
+    <details class="more-grants reveal">
+      <summary>Instructional &amp; student-research awards · 13 awards · $105K</summary>
+      <div class="grants">
+        <div class="grant"><div><div class="gt">SPICE Classroom Modernization: A Gas-Exchange Measurement System for the Plant Science Lab</div><div class="gm">CPP SPICE · PI · 2025–26</div></div><span class="gr">$24K · Funded</span></div>
+        <div class="grant"><div><div class="gt">SPICE Innovative Instruction: Sustainable Indoor Production Mycology Integrating AI, IoT, and Biotechnology</div><div class="gm">CPP SPICE · PI · 2025–26</div></div><span class="gr">$17K · Funded</span></div>
+        <div class="grant"><div><div class="gt">Micro-Internships, Spring 2026: Greenhouse Plug-Production System Installation and Automation (30 paid internships)</div><div class="gm">CPP Innovation Incubator · Faculty Mentor · 2026</div></div><span class="gr">$12K · Funded</span></div>
+        <div class="grant"><div><div class="gt">RSCA: An Automated Hydroponic System for Vertical Microgreens Farming</div><div class="gm">Cal Poly Pomona RSCA · PI · 2024–25</div></div><span class="gr">$10K · Funded</span></div>
+        <div class="grant"><div><div class="gt">Micro-Internships, Fall 2025: Indoor Mushroom Production (30 paid internships)</div><div class="gm">CPP Innovation Incubator · Faculty Mentor · 2025</div></div><span class="gr">$10K · Funded</span></div>
+        <div class="grant"><div><div class="gt">SPICE Innovative Instruction: Cultivating Tomorrow's Workforce, a Precision-Agriculture Teaching Platform for PLT 3020</div><div class="gm">CPP SPICE · PI · 2024–25</div></div><span class="gr">$10K · Funded</span></div>
+        <div class="grant"><div><div class="gt">Engage Summer Research: CEA IoT-Integrated Mushroom Cultivation</div><div class="gm">CPP Office of Undergraduate Research · Faculty Mentor · 2025</div></div><span class="gr">$5.6K · Funded</span></div>
+        <div class="grant"><div><div class="gt">STARS Summer Research: Undergraduate Research in Controlled-Environment Agriculture</div><div class="gm">CPP Office of Undergraduate Research · Faculty Mentor · 2024</div></div><span class="gr">$5.6K · Funded</span></div>
+        <div class="grant"><div><div class="gt">RIO: Mapping Production Strategies for Microgreens in Indoor Vertical Farms</div><div class="gm">Cal Poly Pomona · PI · 2023–24</div></div><span class="gr">$5K · Funded</span></div>
+        <div class="grant"><div><div class="gt">Generative AI Course Integration: AI Literacy in PLT 4020, Agricultural Drone Technology</div><div class="gm">CPP Office of the Provost, Kellogg Legacy Endowment · PI · 2026</div></div><span class="gr">$2K · Funded</span></div>
+        <div class="grant"><div><div class="gt">CEMaST Faculty Fellow Seed Grant: K-12 Vertical-Farming Outreach at AGRIscapes</div><div class="gm">CPP CEMaST · PI · 2024–25</div></div><span class="gr">$2K · Funded</span></div>
+        <div class="grant"><div><div class="gt">CEMaST Student Success: Bringing Spadra Multispectral Data into CS 1400</div><div class="gm">CPP CEMaST · Co-PI (PI: B. Posadas) · 2026</div></div><span class="gr">$1.3K · Funded</span></div>
+        <div class="grant"><div><div class="gt">Summer Assessment Practice &amp; Discovery: Quantitative Literacy in Precision-Agriculture Education</div><div class="gm">Cal Poly Pomona · PI · 2025</div></div><span class="gr">$1K · Funded</span></div>
+      </div>
+    </details>
 
     <div class="thanks reveal">
       <div class="thanks-h">With gratitude to the sponsors who fund this work</div>
       <div class="chip-row">
-        <span class="pchip">Agricultural Research Institute</span>
-        <span class="pchip">Plant California Alliance / CANERS</span>
-        <span class="pchip">CPP SPICE</span>
-        <span class="pchip">RSCA · Cal Poly Pomona</span>
+        <span class="pchip">California Energy Commission</span>
+        <span class="pchip">CSU Agricultural Research Institute</span>
+        <span class="pchip">CANERS Foundation</span>
+        <span class="pchip">A.I. Innovation, N.V.</span>
+        <span class="pchip">NC State CEA Coalition</span>
         <span class="pchip">Partnership for Growth LA</span>
-        <span class="pchip">NC State CEA Center</span>
+        <span class="pchip">Huntley College of Agriculture</span>
+        <span class="pchip">CPP SPICE · RSCA · SIRG</span>
+        <span class="pchip">CPP Office of the Provost</span>
+        <span class="pchip">CEMaST · Cal Poly Pomona</span>
+        <span class="pchip">CPP Office of Undergraduate Research</span>
+        <span class="pchip">CPP Innovation Incubator</span>
       </div>
     </div>
     <div class="thanks reveal">
@@ -907,7 +1085,9 @@ header.nav.scrolled{background:rgba(8,23,15,.9);box-shadow:0 8px 30px -14px rgba
         <span class="pchip">NC State University</span>
         <span class="pchip">University of Georgia</span>
         <span class="pchip">Tel Aviv University &amp; ARO, Israel</span>
-        <span class="pchip">CEMaST · Cal Poly Pomona</span>
+        <span class="pchip">Pitzer College · Robert Redford Conservancy (FFAR)</span>
+        <span class="pchip">Wayne State University</span>
+        <span class="pchip">California Association of Nurseries</span>
         <span class="pchip">Spadra Farm</span>
       </div>
     </div>
@@ -934,8 +1114,8 @@ header.nav.scrolled{background:rgba(8,23,15,.9);box-shadow:0 8px 30px -14px rgba
       <div class="tcard">
         <span class="tlvl">Intro</span>
         <div class="tc">PLT 1120 / 1120L</div>
-        <h3>Plant Science 1</h3>
-        <p>Introductory plant biology paired with a hands-on lab: students seed, grow, and measure crops in hydroponic and vertical-farm systems and take leaf gas-exchange readings out at Spadra Farm.</p>
+        <h3>Horticulture and Greenhouse Management</h3>
+        <p>Students take a crop from seed to harvest, work out the math of a hydroponic nutrient solution, and compare lighting, climate control, and energy use across the campus container farm and research greenhouse. Formerly Plant Science 1.</p>
       </div>
       <div class="tcard">
         <span class="tlvl">Upper-division</span>
@@ -947,23 +1127,29 @@ header.nav.scrolled{background:rgba(8,23,15,.9);box-shadow:0 8px 30px -14px rgba
         <span class="tlvl">Upper-division</span>
         <div class="tc">PLT 4210 / 4210L</div>
         <h3>Production Mycology</h3>
-        <p>Mushroom cultivation from fungal ID to fruiting, with IoT climate control and automation. Students build a small-scale production system and pitch it to Southern California growers.</p>
+        <p>Mushroom cultivation from substrate and aseptic culture to fruiting, with IoT climate control and automation, in an indoor production room built for the course. Revived and first offered in Spring 2026.</p>
       </div>
       <div class="tcard">
         <span class="tlvl">Graduate</span>
         <div class="tc">AG 5200</div>
-        <h3>Statistics in Agriculture, Python Edition</h3>
-        <p>A graduate stats course rebuilt around the modern Python stack: experimental design, regression, growth curves, and machine learning on real agricultural datasets.</p>
+        <h3>Research Design and Data Analysis for Agriculture</h3>
+        <p>Redesigned for Fall 2026 as a Python edition: experimental-design theory paired with code-along labs on real agricultural data, fourteen scaffolded checkpoints, and a strict reproducibility standard.</p>
       </div>
       <div class="tcard soon">
-        <span class="tlvl">Spring 2027</span>
+        <span class="tlvl">Fall 2027</span>
         <div class="tc">PLT 4020</div>
         <h3>Agricultural Drone Technology</h3>
-        <p>A new course launching soon: FAA Part 107 remote-pilot preparation and turning multispectral and thermal drone imagery into agronomic decisions.</p>
+        <p>A new course in curriculum review: FAA Part 107 knowledge, safe UAV operation, and precision-ag imagery, with generative AI use built in and assessed. An NDAA-compliant teaching fleet is in procurement.</p>
+      </div>
+      <div class="tcard soon">
+        <span class="tlvl">In review</span>
+        <div class="tc">PLT 4600</div>
+        <h3>Geospatial Analysis of Soils, Plants, and People</h3>
+        <p>A new GIS course co-developed with Dr. Miranda Aiken and Dr. Guadalupe Maldonado Andrade, now in curriculum review.</p>
       </div>
     </div>
 
-    <p class="teach-note reveal">Two of these courses, <strong>PLT 3020</strong> and <strong>PLT 4210</strong>, earned Cal Poly Pomona's <strong>PolyX</strong> polytechnic-signature-experience designation for their build-and-operate design, and the lab's instructional work has twice been backed by <strong>SPICE</strong> classroom-innovation awards.</p>
+    <p class="teach-note reveal">Two of these courses, <strong>PLT 3020</strong> and <strong>PLT 4210</strong>, earned Cal Poly Pomona's <strong>PolyX</strong> polytechnic-signature-experience designation for their build-and-operate design, and PLT 4210 was featured in the 2025 PolyX Faculty Spotlight. Thirteen instructional and student-research awards, including three <strong>SPICE</strong> classroom-innovation grants, have equipped these courses, and <strong>60 paid micro-internships</strong> let student teams build the container farm, the mushroom room, and a greenhouse plug-production system. With Computer Science, Spadra drone imagery now powers programming assignments in <strong>CS 1400</strong>.</p>
 
     <div class="teach-extra reveal">
       <div class="thanks-h">Hands-on in every course</div>
@@ -1081,6 +1267,12 @@ header.nav.scrolled{background:rgba(8,23,15,.9);box-shadow:0 8px 30px -14px rgba
         <p>B.S. Computer Science · agrivoltaic machine learning; ASHS 2026 speaker.</p>
       </div>
     </div>
+    <div class="thanks-h pub-sub reveal">Graduate researchers &amp; recent alumni</div>
+    <ul class="cred-list grad-list reveal">
+      <li><span class="yr">M.S.</span><span class="d"><strong>Megan Kelly</strong><span>M.S. Plant Science, expected 2027 · leads the Spadra agrivoltaic romaine trials · CSU ARI-NextGen fellow · Outstanding Graduate Student of the Year</span></span></li>
+      <li><span class="yr">M.S. 2026</span><span class="d"><strong>Samuel Mattia</strong><span>M.S. Plant Science · thesis on low-cost, open-source multi-sensor automation for hydroponic lettuce · AmericanHort Scholar</span></span></li>
+      <li><span class="yr">M.S. 2025</span><span class="d"><strong>Lahari Sandepudi</strong><span>M.S. Computer Science (co-advised) · built the machine-learning engine behind the lab's greenhouse web tool, then refined it as the lab's ML engineer</span></span></li>
+    </ul>
   </div>
 </section>
 <hr class="spectrum-rule" />
@@ -1094,13 +1286,40 @@ header.nav.scrolled{background:rgba(8,23,15,.9);box-shadow:0 8px 30px -14px rgba
       <p>Papers, grants, and milestones as they happen. Send me your latest talks, awards, and new members to keep this current.</p>
     </div>
     <div class="news reveal">
-      <div class="nitem"><div class="nd">2026</div><div class="nb"><span class="ntag milestone">Talks</span>Seven lab abstracts accepted for <strong>oral presentation at ASHS 2026</strong> (Dallas, Aug 3–7), all led by our graduate and undergraduate researchers, across agrivoltaics, controlled-environment ag, and machine learning. <a href="#talks" style="color:var(--leaf)">See the lineup →</a></div></div>
+      <div class="nitem"><div class="nd">Sep 2026</div><div class="nb"><span class="ntag grant">Grant</span>The lab won a <strong>$2.1M California Energy Commission</strong> EPIC award, ranked 2nd of 19 proposals, for field-validated co-optimization of solar generation, battery dispatch, and crop production to scale agrivoltaics across California.</div></div>
+      <div class="nitem"><div class="nd">Sep 2026</div><div class="nb"><span class="ntag milestone">Outreach</span>Hosted the <strong>California Association of Nurseries</strong> at Cal Poly Pomona on Sept. 17. Members toured the container vertical farm, the greenhouses near the Farm Store, and the mushroom and hydroponic systems, then visited the agrivoltaic project at Spadra Farm run with Pitzer College. Students who built and run these systems explained what they are learning, and four undergraduates presented their research.
+        <span class="nsrc">Featured in Huntley College News, September 2026: "Nursery Association Tours Ag Facilities"</span>
+        <div class="nthumbs">
+          <img src="assets/img/events/can-tour-1.jpg" alt="Nursery association members inside the container vertical farm under pink grow lights" loading="lazy"/>
+          <img src="assets/img/events/can-tour-2.jpg" alt="A student explaining the vertical grow towers to visitors" loading="lazy"/>
+          <img src="assets/img/events/can-tour-3.jpg" alt="A student showing mushroom substrate to visitors in the production room" loading="lazy"/>
+          <img src="assets/img/events/can-tour-4.jpg" alt="The lab team talking with visitors among the Spadra Farm crop beds" loading="lazy"/>
+          <img src="assets/img/events/can-tour-5.jpg" alt="Visitors and the lab team in front of a solar panel at the Spadra agrivoltaic site" loading="lazy"/>
+          <img src="assets/img/events/can-tour-6.jpg" alt="Visitors touring the farm equipment shop with a student guide" loading="lazy"/>
+        </div></div></div>
+      <div class="nitem"><div class="nd">Sep 2026</div><div class="nb"><span class="ntag milestone">Outreach</span>Biology students toured our <strong>indoor mushroom production room</strong>, from spawn jars and the fruiting tent to fresh harvests of oyster and lion's mane mushrooms grown under IoT climate control.
+        <div class="nthumbs">
+          <img src="assets/img/events/mushroom-tour-1.jpg" alt="Students looking into the mushroom fruiting tent" loading="lazy"/>
+          <img src="assets/img/events/mushroom-tour-2.jpg" alt="Grain spawn jars labeled by species and date" loading="lazy"/>
+          <img src="assets/img/events/mushroom-tour-3.jpg" alt="A tray of harvested oyster, lion's mane, and other mushrooms" loading="lazy"/>
+          <img src="assets/img/events/mushroom-tour-4.jpg" alt="A student holding a colonized mushroom grow bag" loading="lazy"/>
+          <img src="assets/img/events/mushroom-tour-5.jpg" alt="Shelves of mushroom grow bags fruiting in the production room" loading="lazy"/>
+        </div></div></div>
+      <div class="nitem"><div class="nd">Aug 2026</div><div class="nb"><span class="ntag milestone">Talks</span>Our graduate and undergraduate researchers gave <strong>eight oral presentations at ASHS 2026</strong> in Dallas, across agrivoltaics, controlled-environment ag, and machine learning. <a href="#talks" style="color:var(--leaf)">See the lineup →</a></div></div>
+      <div class="nitem"><div class="nd">May 2026</div><div class="nb"><span class="ntag award">Award</span><strong>SnapGrow Solutions</strong>, a student startup the lab advises, won 2nd place and $10,000 in the Hardware &amp; Consumer Goods track at the CSU-wide <strong>Sunstone Startup Launch</strong>, after placing 3rd at CPP's Bronco Startup Challenge. Their reusable vertical-farm insert was tested in our container farm.</div></div>
+      <div class="nitem"><div class="nd">2026</div><div class="nb"><span class="ntag award">Award</span>Dr. Ravishankar was named the Huntley College of Agriculture's <strong>Outstanding Faculty Advisor</strong>, and M.S. student Megan Kelly was named <strong>Outstanding Graduate Student of the Year</strong>.</div></div>
+      <div class="nitem"><div class="nd">2026</div><div class="nb"><span class="ntag milestone">Milestone</span>Samuel Mattia completed his <strong>M.S. thesis</strong> on low-cost, open-source automation for hydroponic lettuce and was selected as an <strong>AmericanHort Scholar</strong>, one of six nationally.</div></div>
+      <div class="nitem"><div class="nd">2026</div><div class="nb"><span class="ntag grant">Grant</span>New PI awards from the <strong>CSU Agricultural Research Institute</strong> ($100K, plus a $10K seed grant) and the <strong>CANERS Foundation</strong> ($20K) fund agrivoltaic decision support, organic-PV greenhouses, and a nursery decision-support tool.</div></div>
+      <div class="nitem"><div class="nd">2026</div><div class="nb"><span class="ntag milestone">Milestone</span>Invention disclosure <strong>CPP2026-003</strong> filed for the lab's coupled greenhouse energy and crop-growth simulator, after a freedom-to-operate review found no high-relevance prior art.</div></div>
+      <div class="nitem"><div class="nd">2026</div><div class="nb"><span class="ntag paper">Papers</span>Three <strong>student-first-author papers</strong> on machine learning for hydroponics, agrivoltaics, and field decisions submitted to IEEE SCSETech 2026.</div></div>
       <div class="nitem"><div class="nd">2026</div><div class="nb"><span class="ntag paper">Paper</span>New first-author study in <strong>Energy Conversion &amp; Management: X</strong> benchmarks spectrum-splitting agrivoltaics with spectrally resolved ray-tracing and mechanistic crop modeling, improving water-use efficiency ~15% while holding yields within 5–12% of open-field across arid and humid climates. <a href="https://doi.org/10.1016/j.ecmx.2026.101987" target="_blank" rel="noopener" style="color:var(--leaf)">Read it →</a></div></div>
       <div class="nitem"><div class="nd">2026</div><div class="nb"><span class="ntag paper">Paper</span>Collaboration with the University of Georgia published in <strong>Agronomy</strong>, showing agrivoltaic high tunnels can power themselves and still hold crop yield in a subtropical climate. <a href="https://doi.org/10.3390/agronomy16131299" target="_blank" rel="noopener" style="color:var(--leaf)">Read it →</a></div></div>
+      <div class="nitem"><div class="nd">2025</div><div class="nb"><span class="ntag milestone">Milestone</span>Dr. Ravishankar became <strong>Graduate Program Coordinator</strong> for the Plant Science M.S. program, and PLT 4210 Production Mycology was featured in the university's <strong>PolyX Faculty Spotlight</strong>.</div></div>
       <div class="nitem"><div class="nd">2025</div><div class="nb"><span class="ntag press">Press</span>Cal Poly Pomona spotlights the <strong>Spadra Farm agrivoltaic project</strong>: romaine lettuce grown beneath solar panels in what's believed to be Southern California's first commercial agrivoltaic system. <a href="https://www.cpp.edu/agri/news/2025-agrivoltaics.shtml" target="_blank" rel="noopener" style="color:var(--leaf)">Read the story →</a></div></div>
       <div class="nitem"><div class="nd">2025</div><div class="nb"><span class="ntag paper">Paper</span>Preprint released: <strong>Economic Potential of Open-Field Agrivoltaics with Planar Spectral Beam Splitting</strong>, with collaborators in Israel.</div></div>
-      <div class="nitem"><div class="nd">2023</div><div class="nb"><span class="ntag milestone">Milestone</span>Launched the lab (now <strong>CIRCAS Lab</strong>) at Cal Poly Pomona and was named a <strong>CEMaST Faculty Scholar</strong>.</div></div>
-      <div class="nitem"><div class="nd">2023</div><div class="nb"><span class="ntag paper">Paper</span>Genomic analysis of crops grown under semitransparent organic solar cells published in <strong>Frontiers in Plant Science</strong>.</div></div>
+      <div class="nitem"><div class="nd">2024</div><div class="nb"><span class="ntag milestone">Milestone</span>Named a <strong>CEMaST Faculty Scholar</strong> at Cal Poly Pomona.</div></div>
+      <div class="nitem"><div class="nd">2023</div><div class="nb"><span class="ntag milestone">Milestone</span>Launched the lab (now <strong>CIRCAS Lab</strong>) at Cal Poly Pomona.</div></div>
+      <div class="nitem"><div class="nd">2023</div><div class="nb"><span class="ntag paper">Paper</span>Study of how lettuce and tomato respond at the molecular level to wavelength-selective solar cells published in <strong>Frontiers in Plant Science</strong>.</div></div>
       <div class="nitem"><div class="nd">2022</div><div class="nb"><span class="ntag paper">Paper</span>Global techno-economic study of solar-powered greenhouses published in <strong>Energy &amp; Environmental Science</strong>.</div></div>
       <div class="nitem"><div class="nd">2020</div><div class="nb"><span class="ntag paper">Paper</span>The net-zero-energy greenhouse concept published in <strong>Joule</strong>.</div></div>
     </div>
@@ -1190,13 +1409,13 @@ header.nav.scrolled{background:rgba(8,23,15,.9);box-shadow:0 8px 30px -14px rgba
 
   // ---- count-up on hero stats ----
   function countUp(el){
-    var end=parseFloat(el.dataset.end)||0,pre=el.dataset.prefix||'',suf=el.dataset.suffix||'';
-    if(reduce){el.textContent=pre+end+suf;return;}
+    var end=parseFloat(el.dataset.end)||0,dec=parseInt(el.dataset.decimals,10)||0,pre=el.dataset.prefix||'',suf=el.dataset.suffix||'';
+    if(reduce){el.textContent=pre+end.toFixed(dec)+suf;return;}
     var start=null,dur=1400;
     function step(ts){
       if(!start)start=ts; var p=Math.min((ts-start)/dur,1);
       var e=1-Math.pow(1-p,3); // easeOutCubic
-      el.textContent=pre+Math.round(end*e)+suf;
+      el.textContent=pre+(end*e).toFixed(dec)+suf;
       if(p<1)requestAnimationFrame(step);
     }
     requestAnimationFrame(step);
