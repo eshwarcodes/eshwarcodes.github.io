@@ -348,6 +348,38 @@ footer{border-top:1px solid var(--line);padding:64px 0 48px;margin-top:8px}
   .specs{grid-template-columns:1fr 1fr}
 }
 
+/* ============ SPOTLIGHT: CEC SPLINT award ============ */
+.hero-news{display:flex;width:fit-content;max-width:100%;align-items:center;gap:10px;margin-bottom:22px;
+  padding:6px 16px 6px 6px;border-radius:999px;border:1px solid rgba(var(--solar-rgb),.4);
+  background:rgba(var(--solar-rgb),.08);font-size:14.5px;line-height:1.35;color:var(--mist);transition:border-color .2s,background .2s}
+.hero-news:hover{border-color:var(--solar);background:rgba(var(--solar-rgb),.15)}
+.hero-news .hn-tag{flex:0 0 auto;font-family:var(--ff-mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;
+  background:var(--solar);color:var(--canopy);padding:5px 10px;border-radius:999px}
+.hero-news strong{color:var(--solar);font-weight:600}
+.spotlight{background:radial-gradient(80% 110% at 100% 0%,rgba(var(--solar-rgb),.10),transparent 60%),
+  radial-gradient(70% 100% at 0% 100%,rgba(var(--leaf-rgb),.08),transparent 60%)}
+.spotlight .feature-grid{align-items:start}
+.sitecard{background:var(--canopy-2);border:1px solid var(--line-strong);border-radius:16px;padding:22px 24px}
+.sitecard h3{font-family:var(--ff-mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--stone-dim);font-weight:500;margin:0 0 4px}
+.sites{list-style:none;margin:0;padding:0}
+.sites li{display:grid;grid-template-columns:12px 1fr;gap:2px 14px;padding:12px 0;border-top:1px solid var(--line)}
+.sites li:first-child{border-top:0}
+.sites .dot{width:10px;height:10px;border-radius:50%;margin-top:7px;background:var(--solar);box-shadow:0 0 0 4px rgba(var(--solar-rgb),.15)}
+.sites .dot.g{background:var(--leaf);box-shadow:0 0 0 4px rgba(var(--leaf-rgb),.15)}
+.sites .sn{color:var(--mist);font-weight:600;font-size:15.5px;line-height:1.35}
+.sites .sd{grid-column:2;font-size:13.5px;color:var(--stone);line-height:1.45}
+.sites .sr{font-family:var(--ff-mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--leaf-soft)}
+.site-key{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:10px;padding-top:12px;border-top:1px solid var(--line);
+  font-family:var(--ff-mono);font-size:11px;color:var(--stone-dim)}
+.site-key span{display:inline-flex;align-items:center;gap:7px}
+.site-key i{width:8px;height:8px;border-radius:50%;background:var(--solar)}
+.site-key i.g{background:var(--leaf)}
+.crew{display:grid;grid-template-columns:1fr 1fr;gap:14px 20px;margin-top:12px}
+.crew .cn{color:var(--mist);font-weight:600;font-size:14.5px;line-height:1.3}
+.crew .cr{font-family:var(--ff-mono);font-size:11px;color:var(--stone);letter-spacing:.02em;margin-top:3px;line-height:1.45}
+@media(max-width:820px){.spotlight .feature-media{order:0}}
+@media(max-width:480px){.crew{grid-template-columns:1fr}}
+
 /* ============ TEACHING gallery + tools ============ */
 .tgallery{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:16px;margin-bottom:34px}
 .tgallery figure{margin:0}
@@ -554,6 +586,7 @@ header.nav.scrolled{background:rgba(8,23,15,.9);box-shadow:0 8px 30px -14px rgba
   <div class="aurora" aria-hidden="true"><b class="a1"></b><b class="a2"></b><b class="a3"></b></div>
   <div class="wrap hero-grid">
     <div>
+      <a class="hero-news" href="#splint"><span class="hn-tag">New</span><span><strong>$2.1M</strong> California Energy Commission award to scale agrivoltaics →</span></a>
       <span class="eyebrow">CIRCAS Lab · Cal Poly Pomona</span>
       <h1 class="hero-h1"><span class="w" style="animation-delay:.05s"><span class="ini">C</span>rop</span> <span class="w" style="animation-delay:.13s"><span class="ini">I</span>ntelligence</span> <span class="w" style="animation-delay:.21s">&amp;</span> <span class="w" style="animation-delay:.29s"><span class="ini">R</span>esearch</span> <span class="w" style="animation-delay:.37s">for</span> <span class="w" style="animation-delay:.45s"><span class="ini">C</span>limate-smart</span> <span class="w" style="animation-delay:.53s"><span class="ini">A</span>gricultural</span> <span class="w" style="animation-delay:.61s"><span class="ini">S</span>ystems</span></h1>
       <p class="hero-sub">The lab of Dr. Eshwar Ravishankar. We grow food and energy from the same sunlight through agrivoltaics, engineer controlled-environment farms, and build the sensors and machine learning that run them.</p>
@@ -571,6 +604,51 @@ header.nav.scrolled{background:rgba(8,23,15,.9);box-shadow:0 8px 30px -14px rgba
     <!-- SIGNATURE: CIRCAS lab mark -->
     <div class="hero-logo">
       <img src="assets/img/logo/circas-logo.svg" alt="CIRCAS Lab logo: a circuit-board leaf with a sun and solar panels inside a ring" width="500" height="500" fetchpriority="high"/>
+    </div>
+  </div>
+</section>
+<hr class="spectrum-rule" />
+
+<!-- ============ SPOTLIGHT: CEC SPLINT AWARD ============ -->
+<section class="feature spotlight" id="splint">
+  <div class="wrap feature-grid">
+    <div class="feature-text reveal">
+      <span class="eyebrow">New award · California Energy Commission</span>
+      <h2>$2.1M to scale agrivoltaics across California.</h2>
+      <p class="lead">The California Energy Commission has selected our project for a $2.1M EPIC award under its SPLINT program (Solar PV Located in Non-Traditional Terrain), ranked 2nd of 19 proposals.</p>
+      <p>Meeting California's goal of 100% clean electricity by 2045 could take solar on half a million to a million acres, much of it farmland. Our project, <strong>Scalable Agrivoltaics in California: Field-Validated Co-Optimization of Solar Generation, Battery Dispatch, and Crop Production</strong>, builds the tool that shows when panels, batteries, and crops can share the same acre, and what each one gives up.</p>
+      <p>We will extend the lab's published ray-tracing and crop model with battery dispatch and multi-objective optimization, map agrivoltaic suitability across the service territories of California's three investor-owned utilities, and test the model against field measurements at five sites. The validated engine will be released as open-source software, and HARVEST California will bring it to growers through bilingual workshops and statewide outreach.</p>
+      <div class="specs">
+        <div class="spec"><div class="sl">Sponsor</div><div class="sv">CEC EPIC · GFO-25-306</div></div>
+        <div class="spec"><div class="sl">Award</div><div class="sv">$2.1M · 2nd of 19</div></div>
+        <div class="spec"><div class="sl">Field sites</div><div class="sv">5 across California</div></div>
+        <div class="spec"><div class="sl">Deliverable</div><div class="sv">Open-source decision tool</div></div>
+      </div>
+    </div>
+    <div class="feature-media reveal">
+      <div class="sitecard">
+        <h3>Five-site validation network</h3>
+        <ul class="sites">
+          <li><span class="dot"></span><span class="sn">Spadra Agrivoltaic Research Area, Cal Poly Pomona</span><span class="sd"><span class="sr">Southern California</span> · agrivoltaic array with battery storage</span></li>
+          <li><span class="dot"></span><span class="sn">UC ANR South Coast Research &amp; Extension Center</span><span class="sd"><span class="sr">Irvine</span> · retractable solar canopy over hydroponic greens</span></li>
+          <li><span class="dot"></span><span class="sn">UC Merced agrivoltaic site</span><span class="sd"><span class="sr">Central Valley</span> · led by Dr. Sarah Kurtz</span></li>
+          <li><span class="dot g"></span><span class="sn">Star Route Farms, Coachella</span><span class="sd"><span class="sr">Desert</span> · open-field plots, full-sun baseline</span></li>
+          <li><span class="dot g"></span><span class="sn">Star Route Farms, Bolinas</span><span class="sd"><span class="sr">Coast</span> · open-field plots, full-sun baseline</span></li>
+        </ul>
+        <div class="site-key"><span><i></i>Solar over crops</span><span><i class="g"></i>Open-field reference</span></div>
+      </div>
+      <div class="sitecard">
+        <h3>Project team</h3>
+        <div class="crew">
+          <div><div class="cn">Dr. Eshwar Ravishankar</div><div class="cr">PI · Plant Science, CPP</div></div>
+          <div><div class="cn">Dr. Sai Chandra Kosaraju</div><div class="cr">Co-PI · Computer Science, CPP</div></div>
+          <div><div class="cn">Dr. Aaron Fox</div><div class="cr">Co-PI · Plant Science, CPP</div></div>
+          <div><div class="cn">Dr. Brianna Posadas</div><div class="cr">Co-PI · Computer Science, CPP</div></div>
+          <div><div class="cn">Dr. Sarah Kurtz</div><div class="cr">UC Merced · Central Valley field validation</div></div>
+          <div><div class="cn">HARVEST California</div><div class="cr">Kathryn Beros, Co-Project Director · grower outreach</div></div>
+          <div><div class="cn">AgriDrones</div><div class="cr">UAV multispectral &amp; thermal sensing</div></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -700,7 +778,7 @@ header.nav.scrolled{background:rgba(8,23,15,.9);box-shadow:0 8px 30px -14px rgba
       <span class="eyebrow">Field research · Spadra Farm</span>
       <h2>An agrivoltaic living lab in the field.</h2>
       <p class="lead">A 12 kW off-grid array of elevated, fixed-tilt solar panels over working crop beds, with romaine lettuce growing in their shade.</p>
-      <p>At Cal Poly Pomona's Spadra Farm, we run replicated romaine trials beneath the panels, comparing regenerative and conventional fertility. Across three crop cycles and 2,805 harvested plants, the panels cost 12–27% of seasonal yield, and regenerative fertility raised absolute yield without closing that shading gap. Flagged plots, drip lines, and drone flights turn the whole array into a dataset. The site is also a study site for the FFAR Seeding Solutions project led by Pitzer College, and the template for our CSU ARI and California Energy Commission work.</p>
+      <p>At Cal Poly Pomona's Spadra Farm, we run replicated romaine trials beneath the panels, comparing regenerative and conventional fertility. Across three crop cycles and 2,805 harvested plants, the panels cost 12–27% of seasonal yield, and regenerative fertility raised absolute yield without closing that shading gap. Flagged plots, drip lines, and drone flights turn the whole array into a dataset. The site is also a study site for the FFAR Seeding Solutions project led by Pitzer College, and the template for our CSU ARI work and our <a href="#splint" style="color:var(--leaf)">California Energy Commission SPLINT project</a>.</p>
       <div class="specs">
         <div class="spec"><div class="sl">Site</div><div class="sv">Spadra Farm, CPP</div></div>
         <div class="spec"><div class="sl">Array</div><div class="sv">12 kW fixed-tilt, off-grid</div></div>
@@ -1032,7 +1110,7 @@ header.nav.scrolled{background:rgba(8,23,15,.9);box-shadow:0 8px 30px -14px rgba
     </div>
     <div class="thanks-h reveal">Research awards · $2.48M</div>
     <div class="grants reveal">
-      <div class="grant"><div><div class="gt">Scalable Agrivoltaics in California: Field-Validated Co-Optimization of Solar Generation, Battery Dispatch, and Crop Production</div><div class="gm">California Energy Commission · EPIC GFO-25-306 · PI · 2026– · ranked 2nd of 19 proposals</div></div><span class="gr">$2.1M · Funded</span></div>
+      <div class="grant"><div><div class="gt">Scalable Agrivoltaics in California: Field-Validated Co-Optimization of Solar Generation, Battery Dispatch, and Crop Production</div><div class="gm">California Energy Commission · EPIC GFO-25-306 (SPLINT) · PI · 2026– · ranked 2nd of 19 proposals</div></div><span class="gr">$2.1M · Funded</span></div>
       <div class="grant"><div><div class="gt">Development of Low-Cost Unmanned Aerial &amp; Ground Vehicle Platforms for Precision Farming</div><div class="gm">CSU Agricultural Research Institute (ARI) · Co-PI (PI: S. Bhandari) · 2024–26 · #25-04-669</div></div><span class="gr">$122K · Funded</span></div>
       <div class="grant"><div><div class="gt">Field-Validated Agrivoltaic Decision Support for Southern California Specialty-Crop Systems</div><div class="gm">CSU Agricultural Research Institute (ARI) · PI · 2026–27 · #27-04-108</div></div><span class="gr">$100K · Funded</span></div>
       <div class="grant"><div><div class="gt">Cellulose-Based Hydrogels for Solar-Powered Atmospheric Water Harvesting</div><div class="gm">A.I. Innovation, N.V. (industry) · Co-PI (PI: S. Li) · 2025</div></div><span class="gr">$50K · Funded</span></div>
@@ -1088,6 +1166,11 @@ header.nav.scrolled{background:rgba(8,23,15,.9);box-shadow:0 8px 30px -14px rgba
         <span class="pchip">Pitzer College · Robert Redford Conservancy (FFAR)</span>
         <span class="pchip">Wayne State University</span>
         <span class="pchip">California Association of Nurseries</span>
+        <span class="pchip">UC Merced</span>
+        <span class="pchip">HARVEST California</span>
+        <span class="pchip">AgriDrones</span>
+        <span class="pchip">UC ANR South Coast REC</span>
+        <span class="pchip">Star Route Farms</span>
         <span class="pchip">Spadra Farm</span>
       </div>
     </div>
@@ -1286,7 +1369,7 @@ header.nav.scrolled{background:rgba(8,23,15,.9);box-shadow:0 8px 30px -14px rgba
       <p>Papers, grants, and milestones as they happen. Send me your latest talks, awards, and new members to keep this current.</p>
     </div>
     <div class="news reveal">
-      <div class="nitem"><div class="nd">Sep 2026</div><div class="nb"><span class="ntag grant">Grant</span>The lab won a <strong>$2.1M California Energy Commission</strong> EPIC award, ranked 2nd of 19 proposals, for field-validated co-optimization of solar generation, battery dispatch, and crop production to scale agrivoltaics across California.</div></div>
+      <div class="nitem"><div class="nd">Sep 2026</div><div class="nb"><span class="ntag grant">Grant</span>The lab won a <strong>$2.1M California Energy Commission</strong> EPIC award under the SPLINT program, ranked 2nd of 19 proposals. With Co-PIs Sai Chandra Kosaraju, Aaron Fox, and Brianna Posadas and partners at UC Merced, HARVEST California, and AgriDrones, we will build and field-test an open-source tool that co-optimizes solar generation, battery dispatch, and crop production at five California sites. <a href="#splint" style="color:var(--leaf)">About the project →</a></div></div>
       <div class="nitem"><div class="nd">Sep 2026</div><div class="nb"><span class="ntag milestone">Outreach</span>Hosted the <strong>California Association of Nurseries</strong> at Cal Poly Pomona on Sept. 17. Members toured the container vertical farm, the greenhouses near the Farm Store, and the mushroom and hydroponic systems, then visited the agrivoltaic project at Spadra Farm run with Pitzer College. Students who built and run these systems explained what they are learning, and four undergraduates presented their research.
         <span class="nsrc">Featured in Huntley College News, September 2026: "Nursery Association Tours Ag Facilities"</span>
         <div class="nthumbs">
